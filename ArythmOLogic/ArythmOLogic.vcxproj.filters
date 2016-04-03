@@ -21,15 +21,9 @@
     <ClCompile Include="BaseLogic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PlusLogic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseLogic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlusLogic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

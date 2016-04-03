@@ -147,12 +147,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BaseLogic.cpp" />
-    <ClCompile Include="PlusLogic.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseLogic.h" />
-    <ClInclude Include="PlusLogic.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
