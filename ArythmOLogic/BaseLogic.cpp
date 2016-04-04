@@ -162,6 +162,7 @@ void BaseLogic::Summ(const BaseLogic &X1, const BaseLogic &X2)
 		num1 = XWork_1.get_NumFromArray(i);
 		num2 = XWork_2.get_NumFromArray(i);
 		num_res = num1 + num2 + temp_mem;
+		temp_mem = 0;
 		if (num_res > 9)
 		{
 			num_ostatok = num_res % 10;
@@ -174,9 +175,15 @@ void BaseLogic::Summ(const BaseLogic &X1, const BaseLogic &X2)
 		}
 		num_length++;
 	}
-	if (temp_mem) Add_Zeros_At_Begin(1);
-	Number[0] = temp_mem;
-	dot_pos = X1.getDotPos();
+	if (temp_mem > 0) 
+	{
+		Add_Zeros_At_Begin(1);
+		Number[0] = temp_mem;
+	}
+	if (temp_mem > 0)
+		dot_pos = XWork_1.getDotPos() + 1;
+	else
+		dot_pos = XWork_1.getDotPos();
 }
 
 bool BaseLogic::isSymbolNumber(char c)
