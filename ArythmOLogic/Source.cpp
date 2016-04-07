@@ -16,19 +16,12 @@ int main()
 	cin.getline(number2, sizeof(number2));
 	Test2.ReadNumber(number2, sizeof(number2));
 
-	//Test.PrintNumbers();
-	//Test2.PrintNumbers();
-
-	//Test.Equalize_Nums(Test2);
-
-
-	//Test.PrintNumbers();
-	//Test2.PrintNumbers();
-	cout << "===========" << endl;
+	cout << "========================================================" << endl;
 
 	Test3.Summ(Test, Test2);
 
 	Test3.PrintNumbers();
+
 	cout << endl;
 	return 0;
 }

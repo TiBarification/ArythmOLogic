@@ -36,10 +36,22 @@ public:
 	void Add_Zeros_At_Begin(int);
 	void Add_Zeros_At_End(int);
 
+	//Compare operation
+
+	// if ( x1 > x2 )    --->  Compare  return 1;
+	// if ( x1 < x2 )    --->  Compare  return 2;
+	// if ( x1 == x2 )   --->  Compare  return 0;
+	int CompareInt(BaseLogic);  
+
+	// Minus operation
+	void Minus(BaseLogic, BaseLogic);
 	// Summ operation
-	void Summ(const BaseLogic&, const BaseLogic&);
+	void Summ(BaseLogic, BaseLogic);
+
+
 private:
 	bool isSymbolNumber(char);
 	bool isSymbolDot(char);
+
 };
 
