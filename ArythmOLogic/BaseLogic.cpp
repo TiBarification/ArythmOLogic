@@ -213,9 +213,6 @@ void BaseLogic::Summ(BaseLogic X1, BaseLogic X2)
 
 	X1.Equalize_Nums(X2);
 
-	X1.PrintNumbers();
-	X2.PrintNumbers();
-
 	for (int i = X1.length() - 1; i >= 0; i--)
 	{
 		num1 = X1.get_NumFromArray(i);
@@ -312,9 +309,6 @@ void BaseLogic::Minus(BaseLogic X1, BaseLogic X2)
 		}
 	}
 	X1.Equalize_Nums(X2);
-
-	X1.PrintNumbers();      // 55555555.5555
-	X2.PrintNumbers();      // 11111111.1111
 
 	int cmp = X1.CompareInt(X2);  // Compare numbers
 

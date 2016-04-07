@@ -18,8 +18,12 @@ int main()
 
 	cout << "========================================================" << endl;
 
-	Test3.Summ(Test, Test2);
+	Test.PrintNumbers();
+	cout << "\n  -  ";
+	Test2.PrintNumbers();
 
+	Test3.Minus(Test, Test2);
+	cout << "\n-----------------------------:";
 	Test3.PrintNumbers();
 
 	cout << endl;
