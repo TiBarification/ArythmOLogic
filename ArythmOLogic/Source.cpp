@@ -1,31 +1,76 @@
 #include "BaseLogic.h"
+#include <Windows.h>
 #define FIRST_NUM 1
 #define SECOND_NUM 2
 
+void CheckString(char* name1)
+{
+
+}
+void Enter(BaseLogic& number)
+{
+	char number1[100];
+	cin >> number1;
+	number.ReadNumber(number1, sizeof(number1));
+}
+void Menu()
+{
+	BaseLogic number1, number2, rez;
+	while (true)
+	{
+		system("CLS");
+		cout << "============================ARITHMOLOGIC MENU============================" << endl << endl;
+		cout << "--> 1 <--  Entering numbers. " << endl;
+		cout << "--> 2 <--  Entering numbers from file. " << endl;
+		cout << "--> 3 <--  Operation a+b. " << endl;
+		cout << "--> 4 <--  Operation a-b. " << endl;
+		cout << "--> 5 <--  Operation a*b. " << endl;
+		cout << "--> 6 <--  Operation a/b. " << endl;
+		cout << "--> 7 <--  Operation x^n  (n - integer). " << endl;
+		cout << "--> 8 <--  Operation 1/x. " << endl;
+		cout << "--> 9 <--  Writing data to a file. " << endl;
+		cout << "--> i <--  Display the result on the screen. " << endl;
+		cout << "--> e <--  Exit. " << endl;
+		cout << "\n>>> ";
+		char switch_, a, str_switch[200];
+		cin >> str_switch;
+		switch_ = str_switch[0];
+		switch (switch_)
+		{
+		case '1': 
+		
+		cout << "\nEnter number #1: ";
+		Enter(number1);
+		cout << "\nEnter number #2: ";
+		Enter(number2);
+		break;
+
+		case '2': break;
+		case '3': rez.Summ(number1, number2); break;
+		case '4': rez.Minus(number1, number2); break;
+		case '5': break;
+		case '6': break;
+		case '7': break;
+		case '8': break;
+		case '9': break;
+		case 'i': 
+				
+				number1.PrintNumbers();
+				cout << "\n *operation* ";
+				number2.PrintNumbers();
+				cout << "\n=============================================================";
+				rez.PrintNumbers(); 
+				break;
+
+		case 'e': return;
+		default: cout << "Incorrect work mode! ";
+		}
+		system("PAUSE");
+	}
+}
+
 int main()
 {
-	setlocale(LC_ALL, "Russian");
-	BaseLogic Test, Test2, Test3;
-	char number1[100], number2[100];
-	cout << "¬ведите число #1: ";
-	cin.getline(number1, sizeof(number1));
-	Test.ReadNumber(number1, sizeof(number1));
-
-	cout << endl;
-	cout << "¬ведите число #2: ";
-	cin.getline(number2, sizeof(number2));
-	Test2.ReadNumber(number2, sizeof(number2));
-
-	cout << "========================================================" << endl;
-
-	Test.PrintNumbers();
-	cout << "\n  -  ";
-	Test2.PrintNumbers();
-
-	Test3.Minus(Test, Test2);
-	cout << "\n-----------------------------:";
-	Test3.PrintNumbers();
-
-	cout << endl;
+	Menu();
 	return 0;
 }

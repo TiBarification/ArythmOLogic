@@ -29,6 +29,18 @@ public:
 	int getDotPos() const { return dot_pos; }
 	void setDotPos(int newpos) { dot_pos = newpos; }
 
+	//operator =
+	void operator= (const BaseLogic& X)
+	{
+		for (int i = 0; i < X.length(); i++)
+		{
+			Number[i] = X.get_NumFromArray(i);
+		}
+		num_length = X.length();
+		Number_neg = X.isNegative();
+		dot_pos = X.getDotPos();
+	}
+
 	// Other
 	void ReadNumber(char*, int);
 	void PrintNumbers();
@@ -47,7 +59,6 @@ public:
 	void Minus(BaseLogic, BaseLogic);
 	// Summ operation
 	void Summ(BaseLogic, BaseLogic);
-
 
 private:
 	bool isSymbolNumber(char);

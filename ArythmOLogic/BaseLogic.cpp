@@ -2,6 +2,9 @@
 BaseLogic::BaseLogic()
 {
 }
+BaseLogic::~BaseLogic()
+{
+}
 
 /* Copy of object */
 BaseLogic::BaseLogic(const BaseLogic&X)
@@ -13,9 +16,6 @@ BaseLogic::BaseLogic(const BaseLogic&X)
 	num_length = X.length();
 	Number_neg = X.isNegative();
 	dot_pos = X.getDotPos();
-}
-BaseLogic::~BaseLogic()
-{
 }
 
 void BaseLogic::ReadNumber(char* str, int len)
@@ -411,12 +411,10 @@ int BaseLogic::CompareInt(BaseLogic X2)
 	return 0;
 }
 
-
 bool BaseLogic::isSymbolNumber(char c)
 {
 	return ((int)c > 47 && (int)c < 58);
 }
-
 bool BaseLogic::isSymbolDot(char c)
 {
 	return ((int)c == 46);
