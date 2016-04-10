@@ -45,6 +45,7 @@ public:
 	void ReadNumber(char*, int);
 	void PrintNumbers();
 	bool Equalize_Nums(BaseLogic&);
+	
 	void Add_Zeros_At_Begin(int);
 	void Add_Zeros_At_End(int);
 

@@ -381,9 +381,9 @@ int BaseLogic::CompareInt(BaseLogic X2)
 
 	if (Number_neg == true && X2.Number_neg == false)  // negative1 - true, negative2 - false; (-X1, X2)
 		return o2;
-	if (Number_neg == false && X2.Number_neg == true)  // negative1 - false, negative2 - true; (X1, -X2)
+	else if (Number_neg == false && X2.Number_neg == true)  // negative1 - false, negative2 - true; (X1, -X2)
 		return o1;
-	if (Number_neg == true && X2.Number_neg == true)   // negative1 - true, negative2 - true; (-X1, -X2)
+	else if (Number_neg == true && X2.Number_neg == true)   // negative1 - true, negative2 - true; (-X1, -X2)
 	{
 		o1 = 2; //inversion
 		o2 = 1; 
@@ -392,22 +392,23 @@ int BaseLogic::CompareInt(BaseLogic X2)
 	int dot_pos1 = getDotPos(), dot_pos2 = X2.getDotPos();
 	if (dot_pos1 > dot_pos2)  // point position
 		return o1;
-	if (dot_pos2 > dot_pos1)  
+	else if (dot_pos2 > dot_pos1)  
 		return o2;
-
-	int num1, num2;
-
-	for (int i = 0; i < length() && i < X2.length(); i++)  // compare numbers
+	else
 	{
-		num1 = get_NumFromArray(i);
-		num2 = X2.get_NumFromArray(i);
+		int num1, num2;
 
-		if (num1 > num2)
-			return o1;
-		if (num2 > num1)
-			return o2;
+		for (int i = 0; i < length() && i < X2.length(); i++)  // compare numbers
+		{
+			num1 = get_NumFromArray(i);
+			num2 = X2.get_NumFromArray(i);
+
+			if (num1 > num2)
+				return o1;
+			else if (num2 > num1)
+				return o2;
+		}
 	}
-
 	return 0;
 }
 
