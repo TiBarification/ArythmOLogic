@@ -36,7 +36,7 @@ void Enter(BaseLogic& number)
 void Menu()
 {
 	BaseLogic number1, number2, rez;
-	while (true)
+	while (true) // bad idea
 	{
 		system("CLS");
 		cout << "============================ARITHMOLOGIC MENU============================" << endl << endl;
