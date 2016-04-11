@@ -54,7 +54,6 @@ void Menu()
 		cout << "--> i <--  Display the result on the screen. " << endl;
 		cout << "--> e <--  Exit. " << endl;
 		cout << "\n>>> ";
-<<<<<<< HEAD
 		char wMode[1], last_action, nullstr[2] = "\0";
 		cin >> wMode;
 		switch (wMode[0])
@@ -66,43 +65,8 @@ void Menu()
 				if (!Enter(number1)) break;
 				cout << "\nEnter number #2: ";
 				Enter(number2);
-=======
-		char wMode;
-		cin.get(wMode);
-		switch (wMode)
-		{
-			case '1': 
-			
-			cout << "\nEnter number #1: ";
-			if (!Enter(number1)) break;
-			cout << "\nEnter number #2: ";
-			Enter(number2);
-			break;
-
-			case '2': break;
-			case '3':
-				if (!(number1.isEmpty() && number2.isEmpty()))
-					rez.Summ(number1, number2);
-				else
-					cout << "Incorrect numbers" << endl;
->>>>>>> bd4c91629b05857e1aeec68966c35ee6abb9092a
 				break;
-			case '4': rez.Minus(number1, number2); break;
-			case '5': break;
-			case '6': break;
-			case '7': break;
-			case '8': break;
-			case '9': break;
-			case 'i': 
-					
-					number1.PrintNumbers();
-					cout << "\n *operation* ";
-					number2.PrintNumbers();
-					cout << "\n=============================================================" << endl;
-					rez.PrintNumbers(); 
-					break;
 
-<<<<<<< HEAD
 			case '2': 
 				break;
 			case '3':
@@ -163,10 +127,6 @@ void Menu()
 			default: 
 				cout << "Incorrect work mode! "; 
 				system("PAUSE");
-=======
-			case 'e': return;
-			default: cout << "Incorrect work mode! ";
->>>>>>> bd4c91629b05857e1aeec68966c35ee6abb9092a
 		}
 	}
 }
