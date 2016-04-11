@@ -48,6 +48,7 @@ public:
 	void ReadNumber(char*, int);
 	void PrintNumbers();
 	bool Equalize_Nums(BaseLogic&);
+	void FillRange(const BaseLogic&, int, int);
 	
 	void Add_Zeros_At_Begin(int);
 	void Add_Zeros_At_End(int);
@@ -63,6 +64,8 @@ public:
 	void Minus(BaseLogic, BaseLogic);
 	// Summ operation
 	void Summ(BaseLogic, BaseLogic);
+	// Karatsuba mul
+	//BaseLogic Karatsuba_Mul(const BaseLogic&, const BaseLogic&);
 	// Div operation
 	//void Div(BaseLogic, BaseLogic);
 

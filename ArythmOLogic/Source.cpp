@@ -54,9 +54,9 @@ void Menu()
 		cout << "--> i <--  Display the result on the screen. " << endl;
 		cout << "--> e <--  Exit. " << endl;
 		cout << "\n>>> ";
-		char wMode;
-		cin.get(wMode);
-		switch (wMode)
+		char wMode[1];
+		cin >> wMode;
+		switch (wMode[0])
 		{
 			case '1': 
 			
@@ -74,7 +74,12 @@ void Menu()
 					cout << "Incorrect numbers" << endl;
 				break;
 			case '4': rez.Minus(number1, number2); break;
-			case '5': break;
+			case '5': 
+				/*if (!(number1.isEmpty() && number2.isEmpty()))
+					rez = rez.Karatsuba_Mul(number1, number2);
+				else
+					cout << "Incorrect numbers" << endl;*/
+				break;
 			case '6': break;
 			case '7': break;
 			case '8': break;

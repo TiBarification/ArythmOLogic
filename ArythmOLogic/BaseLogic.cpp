@@ -2,6 +2,18 @@
 BaseLogic::BaseLogic()
 {
 }
+
+void BaseLogic::FillRange(const BaseLogic& X, int begin = 0, int end = 1)
+{
+	int k = 0;
+	for (int i = begin; i < end; i++)
+	{
+		Number[k] = X.get_NumFromArray(i);
+		num_length++;
+		k++;
+	}
+}
+
 BaseLogic::~BaseLogic()
 {
 }
@@ -243,15 +255,94 @@ void BaseLogic::Summ(BaseLogic X1, BaseLogic X2)
 		dot_pos = X1.getDotPos();
 }
 
-//void BaseLogic::Div(BaseLogic X1, BaseLogic X2)
+/*
+BaseLogic BaseLogic::Karatsuba_Mul(const BaseLogic &X, const BaseLogic &Y)
+{
+	auto len = X.length();
+	BaseLogic Xr, Xl, Yr, Yl, res;
+
+	auto k = len / 2;
+
+	Xr.FillRange(X, 0, k);
+	Xl.FillRange(X, k, X.length());
+	Yr.FillRange(Y, 0, k);
+	Yl.FillRange(Y, k, Y.length());
+
+	BaseLogic P1, P2;
+	P1 = Karatsuba_Mul(Xl, Yl);
+	P2 = Karatsuba_Mul(Xr, Yr);
+
+	BaseLogic Xlr, Ylr;
+
+	int n1, n2;
+	for (int i = 0; i < k; ++i)
+	{
+		n1 = Xl.get_NumFromArray(i);
+		n2 = Xr.get_NumFromArray(i);
+		Xlr.set_NumInArray(i, n1 + n2);
+
+		n1 = Yl.get_NumFromArray(i);
+		n2 = Yr.get_NumFromArray(i);
+		Ylr.set_NumInArray(i, n1 + n2);
+	}
+
+	BaseLogic P3 = Karatsuba_Mul(Xlr, Ylr);
+
+	int n3;
+	for (auto i = 0; i < len; ++i)
+	{
+		n1 = P1.get_NumFromArray(i);
+		n2 = P2.get_NumFromArray(i);
+		n3 = P3.get_NumFromArray(i);
+		n3 -= n2 + n1;
+		P3.set_NumInArray(i, n3);
+	}
+
+	for (auto i = len; i < len; ++i)
+	{
+		n1 = P2.get_NumFromArray(i);
+		res.set_NumInArray(i, n1);
+	}
+
+	for (auto i = len; i < 2 * len; ++i)
+	{
+		n1 = P1.get_NumFromArray(i - len);
+		res.set_NumInArray(i, n1);
+	}
+
+	for (auto i = k; i < len + k; ++i)
+	{
+		n1 = res.get_NumFromArray(i);
+		n3 = P3.get_NumFromArray(i - k);
+		n1 += n3;
+		res.set_NumInArray(i, n1);
+	}
+
+	return res;
+} */
+
+//void BaseLogic::Div(BaseLogic A, BaseLogic B)
 //{
-//	int temp_length = 0;
-//	BaseLogic temp;
-//	for (int i = X1.length(); i >= 0; i--)
+//	BaseLogic A1;
+//	for (int i = 0; i < B.length(); i++)
 //	{
-//		temp.set_NumInArray(0, X1.get_NumFromArray(i));
-//		// Find max number (x), to make this true: b * x <= 
+//		A1.set_NumInArray(i, A.get_NumFromArray(i));
+//		A1.set_length(i + 1);
 //	}
+//
+//	if (A1.CompareInt(B) == 2) // A1 < B
+//	{
+//		// Add num to A1 from A
+//		A1.set_length(A1.length() + 1);
+//		A1.set_NumInArray(A1.length(), A.get_NumFromArray(A1.length()));
+//	}
+//
+//	// Parse all numbers to find max
+//	int C = 0;
+//	do
+//	{
+//
+//	} while (C * B <= A1);
 //}
 
 void BaseLogic::Minus(BaseLogic X1, BaseLogic X2)
