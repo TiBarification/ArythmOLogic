@@ -41,7 +41,7 @@ void Menu()
 	while (true) // bad idea
 	{
 		system("CLS");
-		cout << "============================ARITHMOLOGIC MENU============================" << endl << endl;
+		cout << "============================ARYTHMOLOGIC MENU============================" << endl << endl;
 		cout << "--> 1 <--  Entering numbers. " << endl;
 		cout << "--> 2 <--  Entering numbers from file. " << endl;
 		cout << "--> 3 <--  Operation a+b. " << endl;
@@ -113,12 +113,6 @@ void Menu()
 				break;
 			case '9': 
 				break;
-			case '4': rez.Minus(number1, number2); break;
-			case '5': break;
-			case '6': break;
-			case '7': break;
-			case '8': break;
-			case '9': break;
 			case 'i': 
 				if (number1.isEmpty() == false && number2.isEmpty() == false && rez.isEmpty() == false)
 				{
