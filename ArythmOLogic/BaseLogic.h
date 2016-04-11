@@ -29,6 +29,9 @@ public:
 	int getDotPos() const { return dot_pos; }
 	void setDotPos(int newpos) { dot_pos = newpos; }
 
+	// Check if array is empty
+	bool isEmpty() const { return !(length()); }
+
 	//operator =
 	void operator= (const BaseLogic& X)
 	{

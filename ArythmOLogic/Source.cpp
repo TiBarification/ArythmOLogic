@@ -19,16 +19,19 @@ bool CheckString(char* input, int len)
 	return false;
 }
 
-void Enter(BaseLogic& number)
+bool Enter(BaseLogic& number)
 {
 	char number1[100];
 	cin >> number1;
 	if (CheckString(number1, sizeof number1))
+	{
 		number.ReadNumber(number1, sizeof(number1));
+		return true;
+	}
 	else
 	{
 		cerr << "Error in input" << endl;
-		return;
+		return false;
 	}
 }
 
@@ -58,13 +61,18 @@ void Menu()
 			case '1': 
 			
 			cout << "\nEnter number #1: ";
-			Enter(number1);
+			if (!Enter(number1)) break;
 			cout << "\nEnter number #2: ";
 			Enter(number2);
 			break;
 
 			case '2': break;
-			case '3': rez.Summ(number1, number2); break;
+			case '3':
+				if (!(number1.isEmpty() && number2.isEmpty()))
+					rez.Summ(number1, number2);
+				else
+					cout << "Incorrect numbers" << endl;
+				break;
 			case '4': rez.Minus(number1, number2); break;
 			case '5': break;
 			case '6': break;

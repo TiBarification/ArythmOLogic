@@ -64,6 +64,7 @@ void BaseLogic::PrintNumbers()
 			cout << '.';
 		cout << Number[i];
 	}
+	cout << endl;
 }
 
 int BaseLogic::get_NumFromArray(int idx) const
