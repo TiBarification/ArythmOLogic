@@ -64,6 +64,7 @@ void BaseLogic::PrintNumbers()
 			cout << '.';
 		cout << Number[i];
 	}
+	cout << endl;
 }
 
 int BaseLogic::get_NumFromArray(int idx) const
@@ -241,6 +242,18 @@ void BaseLogic::Summ(BaseLogic X1, BaseLogic X2)
 	else
 		dot_pos = X1.getDotPos();
 }
+
+//void BaseLogic::Div(BaseLogic X1, BaseLogic X2)
+//{
+//	int temp_length = 0;
+//	BaseLogic temp;
+//	for (int i = X1.length(); i >= 0; i--)
+//	{
+//		temp.set_NumInArray(0, X1.get_NumFromArray(i));
+//		// Find max number (x), to make this true: b * x <= 
+//	}
+//}
+
 void BaseLogic::Minus(BaseLogic X1, BaseLogic X2)
 {
 	int num1, num2, num_res, num_ostatok = 0, temp_mem = 0;
@@ -273,39 +286,42 @@ void BaseLogic::Minus(BaseLogic X1, BaseLogic X2)
 	if (X1.Number_neg == true && X2.Number_neg == true) // (-X1) - (-X2) = -X1 + X2 = X2 - X1
 	{
 		X1.Number_neg = false; X2.Number_neg = false;
-		int cmp0 = X1.CompareInt(X2);
-		if (cmp0 == 2)
+		int cmp = X1.CompareInt(X2);
+		switch (cmp)
 		{
-			X2.Number_neg = false;
-			X1.Number_neg = false;
-			BaseLogic X4;
-			X4.Minus(X2, X1);
-			Number_neg = false;
-			num_length = X4.length();
-			for (int i = 0; i < X4.length(); i++)
-				Number[i] = X4.Number[i];
-			dot_pos = X4.getDotPos();
-			return;
-		}
-		if (cmp0 == 1)
-		{
-			X1.Number_neg = false;
-			BaseLogic X5;
-			X5.Minus(X1, X2);
-			Number_neg = true;
-			num_length = X5.length();
-			for (int i = 0; i < X5.length(); i++)
-				Number[i] = X5.Number[i];
-			dot_pos = X5.getDotPos();
-			return;
-		}
-		if (cmp0 == 0)
-		{
-			num_length = X1.length();
-			for (int i = X1.length() - 1; i >= 0; i--)
-				Number[i] = 0;
-			dot_pos = X1.getDotPos();
-			return;
+			case 2:
+			{
+				X2.Number_neg = false;
+				X1.Number_neg = false;
+				BaseLogic X4;
+				X4.Minus(X2, X1);
+				Number_neg = false;
+				num_length = X4.length();
+				for (int i = 0; i < X4.length(); i++)
+					Number[i] = X4.Number[i];
+				dot_pos = X4.getDotPos();
+				return;
+			}
+			case 1:
+			{
+				X1.Number_neg = false;
+				BaseLogic X5;
+				X5.Minus(X1, X2);
+				Number_neg = true;
+				num_length = X5.length();
+				for (int i = 0; i < X5.length(); i++)
+					Number[i] = X5.Number[i];
+				dot_pos = X5.getDotPos();
+				return;
+			}
+			case 0:
+			{
+				num_length = X1.length();
+				for (int i = X1.length() - 1; i >= 0; i--)
+					Number[i] = 0;
+				dot_pos = X1.getDotPos();
+				return;
+			}
 		}
 	}
 	X1.Equalize_Nums(X2);
@@ -381,9 +397,9 @@ int BaseLogic::CompareInt(BaseLogic X2)
 
 	if (Number_neg == true && X2.Number_neg == false)  // negative1 - true, negative2 - false; (-X1, X2)
 		return o2;
-	if (Number_neg == false && X2.Number_neg == true)  // negative1 - false, negative2 - true; (X1, -X2)
+	else if (Number_neg == false && X2.Number_neg == true)  // negative1 - false, negative2 - true; (X1, -X2)
 		return o1;
-	if (Number_neg == true && X2.Number_neg == true)   // negative1 - true, negative2 - true; (-X1, -X2)
+	else if (Number_neg == true && X2.Number_neg == true)   // negative1 - true, negative2 - true; (-X1, -X2)
 	{
 		o1 = 2; //inversion
 		o2 = 1; 
@@ -392,22 +408,23 @@ int BaseLogic::CompareInt(BaseLogic X2)
 	int dot_pos1 = getDotPos(), dot_pos2 = X2.getDotPos();
 	if (dot_pos1 > dot_pos2)  // point position
 		return o1;
-	if (dot_pos2 > dot_pos1)  
+	else if (dot_pos2 > dot_pos1)  
 		return o2;
-
-	int num1, num2;
-
-	for (int i = 0; i < length() && i < X2.length(); i++)  // compare numbers
+	else
 	{
-		num1 = get_NumFromArray(i);
-		num2 = X2.get_NumFromArray(i);
+		int num1, num2;
 
-		if (num1 > num2)
-			return o1;
-		if (num2 > num1)
-			return o2;
+		for (int i = 0; i < length() && i < X2.length(); i++)  // compare numbers
+		{
+			num1 = get_NumFromArray(i);
+			num2 = X2.get_NumFromArray(i);
+
+			if (num1 > num2)
+				return o1;
+			else if (num2 > num1)
+				return o2;
+		}
 	}
-
 	return 0;
 }
 

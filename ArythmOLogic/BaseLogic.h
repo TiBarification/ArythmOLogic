@@ -29,6 +29,9 @@ public:
 	int getDotPos() const { return dot_pos; }
 	void setDotPos(int newpos) { dot_pos = newpos; }
 
+	// Check if array is empty
+	bool isEmpty() const { return !(length()); }
+
 	//operator =
 	void operator= (const BaseLogic& X)
 	{
@@ -45,6 +48,7 @@ public:
 	void ReadNumber(char*, int);
 	void PrintNumbers();
 	bool Equalize_Nums(BaseLogic&);
+	
 	void Add_Zeros_At_Begin(int);
 	void Add_Zeros_At_End(int);
 
@@ -59,6 +63,8 @@ public:
 	void Minus(BaseLogic, BaseLogic);
 	// Summ operation
 	void Summ(BaseLogic, BaseLogic);
+	// Div operation
+	//void Div(BaseLogic, BaseLogic);
 
 private:
 	bool isSymbolNumber(char);

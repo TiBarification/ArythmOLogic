@@ -1,22 +1,44 @@
 #include "BaseLogic.h"
-#include <Windows.h>
-#define FIRST_NUM 1
-#define SECOND_NUM 2
 
-void CheckString(char* name1)
+bool CheckString(char* input, int len)
 {
+	int i = 0;
+	bool min_found = false, dot_found = false;
+	if (!isdigit(input[0]) && input[0] != '-') return false;
+	if (input[0] == '-') min_found = true;
+	if (min_found) i++;
+	for (i; i < len; i++)
+	{
+		if (isdigit(input[i])) continue;
+		else if (!dot_found && isdigit(input[i-1]) && input[i] == '.')
+			dot_found = true;
+		else if (input[i] == '\0' && input[i-1] != '.') return true;
+		else return false;
+	}
 
+	return false;
 }
-void Enter(BaseLogic& number)
+
+bool Enter(BaseLogic& number)
 {
 	char number1[100];
 	cin >> number1;
-	number.ReadNumber(number1, sizeof(number1));
+	if (CheckString(number1, sizeof number1))
+	{
+		number.ReadNumber(number1, sizeof(number1));
+		return true;
+	}
+	else
+	{
+		cerr << "Error in input" << endl;
+		return false;
+	}
 }
+
 void Menu()
 {
 	BaseLogic number1, number2, rez;
-	while (true)
+	while (true) // bad idea
 	{
 		system("CLS");
 		cout << "============================ARITHMOLOGIC MENU============================" << endl << endl;
@@ -32,40 +54,80 @@ void Menu()
 		cout << "--> i <--  Display the result on the screen. " << endl;
 		cout << "--> e <--  Exit. " << endl;
 		cout << "\n>>> ";
-		char switch_, a, str_switch[200];
-		cin >> str_switch;
-		switch_ = str_switch[0];
-		switch (switch_)
+		char wMode[1], last_action, nullstr[2] = "\0";
+		cin >> wMode;
+		switch (wMode[0])
 		{
-		case '1': 
-		
-		cout << "\nEnter number #1: ";
-		Enter(number1);
-		cout << "\nEnter number #2: ";
-		Enter(number2);
-		break;
-
-		case '2': break;
-		case '3': rez.Summ(number1, number2); break;
-		case '4': rez.Minus(number1, number2); break;
-		case '5': break;
-		case '6': break;
-		case '7': break;
-		case '8': break;
-		case '9': break;
-		case 'i': 
-				
-				number1.PrintNumbers();
-				cout << "\n *operation* ";
-				number2.PrintNumbers();
-				cout << "\n=============================================================";
-				rez.PrintNumbers(); 
+			case '1': 
+			
+				rez.ReadNumber(nullstr, 1); // обнуляем результат
+				cout << "\nEnter number #1: ";
+				if (!Enter(number1)) break;
+				cout << "\nEnter number #2: ";
+				Enter(number2);
 				break;
 
-		case 'e': return;
-		default: cout << "Incorrect work mode! ";
+			case '2': 
+				break;
+			case '3':
+				if (number1.isEmpty() == false && number2.isEmpty() == false)
+				{
+					rez.setDotPos(-1);
+					rez.setNegative(0);
+					rez.set_length(0);
+					rez.Summ(number1, number2);
+					last_action = '+';
+				}
+				else
+				{
+					cout << "Incorrect numbers. " << endl;
+					system("PAUSE");
+				}
+				break;
+			case '4':
+				if (number1.isEmpty() == false && number2.isEmpty() == false)
+				{
+					rez.setDotPos(-1);
+					rez.setNegative(0);
+					rez.set_length(0);
+					rez.Minus(number1, number2);
+					last_action = '-';
+				}
+				else
+				{
+					cout << "Incorrect numbers. " << endl;
+					system("PAUSE");
+				}
+				break;
+			case '5': 
+				break;
+			case '6': 
+				break;
+			case '7': 
+				break;
+			case '8': 
+				break;
+			case '9': 
+				break;
+			case 'i': 
+				if (number1.isEmpty() == false && number2.isEmpty() == false && rez.isEmpty() == false)
+				{
+					number1.PrintNumbers();
+					cout << last_action;
+					number2.PrintNumbers();
+					cout << "=============================================================";
+					rez.PrintNumbers();
+				}
+				else
+					cout << "Incorrect numbers or result. " << endl;
+				system("PAUSE");
+				break;
+			case 'e': 
+				return;
+			default: 
+				cout << "Incorrect work mode! "; 
+				system("PAUSE");
 		}
-		system("PAUSE");
 	}
 }
 
