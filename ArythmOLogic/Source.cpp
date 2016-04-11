@@ -54,49 +54,90 @@ void Menu()
 		cout << "--> i <--  Display the result on the screen. " << endl;
 		cout << "--> e <--  Exit. " << endl;
 		cout << "\n>>> ";
-		char wMode[1];
+		char wMode[1], last_action, nullstr[2] = "\0";
 		cin >> wMode;
 		switch (wMode[0])
 		{
 			case '1': 
 			
+				rez.ReadNumber(nullstr, 1); // обнуляем результат
 			cout << "\nEnter number #1: ";
 			if (!Enter(number1)) break;
 			cout << "\nEnter number #2: ";
 			Enter(number2);
 			break;
 
-			case '2': break;
-			case '3':
-				if (!(number1.isEmpty() && number2.isEmpty()))
-					rez.Summ(number1, number2);
-				else
-					cout << "Incorrect numbers" << endl;
+			case '2': 
 				break;
-			case '4': rez.Minus(number1, number2); break;
+			case '3':
+				if (number1.isEmpty() == false && number2.isEmpty() == false)
+				{
+					rez.setDotPos(-1);
+					rez.setNegative(0);
+					rez.set_length(0);
+					rez.Summ(number1, number2);
+					last_action = '+';
+				}
+				else
+				{
+					cout << "Incorrect numbers. " << endl;
+					system("PAUSE");
+				}
+				break;
+			case '4':
+				if (number1.isEmpty() == false && number2.isEmpty() == false)
+				{
+					rez.setDotPos(-1);
+					rez.setNegative(0);
+					rez.set_length(0);
+					rez.Minus(number1, number2);
+					last_action = '-';
+				}
+				else
+				{
+					cout << "Incorrect numbers. " << endl;
+					system("PAUSE");
+				}
+				break;
 			case '5': 
 				/*if (!(number1.isEmpty() && number2.isEmpty()))
-					rez = rez.Karatsuba_Mul(number1, number2);
+				rez = rez.Karatsuba_Mul(number1, number2);
 				else
-					cout << "Incorrect numbers" << endl;*/
+				cout << "Incorrect numbers" << endl;*/
 				break;
+			case '6': 
+				break;
+			case '7': 
+				break;
+			case '8': 
+				break;
+			case '9': 
+				break;
+			case '4': rez.Minus(number1, number2); break;
+			case '5': break;
 			case '6': break;
 			case '7': break;
 			case '8': break;
 			case '9': break;
 			case 'i': 
-					
+				if (number1.isEmpty() == false && number2.isEmpty() == false && rez.isEmpty() == false)
+				{
 					number1.PrintNumbers();
-					cout << "\n *operation* ";
+					cout << last_action;
 					number2.PrintNumbers();
-					cout << "\n=============================================================" << endl;
+					cout << "=============================================================";
 					rez.PrintNumbers(); 
+				}
+				else
+					cout << "Incorrect numbers or result. " << endl;
+				system("PAUSE");
 					break;
-
-			case 'e': return;
-			default: cout << "Incorrect work mode! ";
+			case 'e': 
+				return;
+			default: 
+				cout << "Incorrect work mode! "; 
+				system("PAUSE");
 		}
-		system("PAUSE");
 	}
 }
 
