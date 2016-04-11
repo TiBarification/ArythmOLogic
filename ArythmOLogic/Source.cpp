@@ -1,5 +1,4 @@
 #include "BaseLogic.h"
-#include <Windows.h>
 
 bool CheckString(char* input, int len)
 {
@@ -77,7 +76,7 @@ void Menu()
 					number1.PrintNumbers();
 					cout << "\n *operation* ";
 					number2.PrintNumbers();
-					cout << "\n=============================================================";
+					cout << "\n=============================================================" << endl;
 					rez.PrintNumbers(); 
 					break;
 

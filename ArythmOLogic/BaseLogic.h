@@ -60,6 +60,8 @@ public:
 	void Minus(BaseLogic, BaseLogic);
 	// Summ operation
 	void Summ(BaseLogic, BaseLogic);
+	// Div operation
+	//void Div(BaseLogic, BaseLogic);
 
 private:
 	bool isSymbolNumber(char);
