@@ -1,0 +1,736 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="9c1b8112-6140-4532-b62c-9238deec4f5b"
+  name="AOLDiagramm" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="2be36528-65a4-482e-ad3c-6e69bb72a906"
+        name="BaseLogic"
+        visibility="Private"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="e98625d8-ec14-47d9-afdc-4032c23318e0"
+            name="Number"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <description>General storage of nums</description>
+            <lowerValueInternal>
+              <literalString
+                Id="ed3e3c1f-9506-4f32-a092-cfdeae48d6bc"
+                name="Lower"
+                value="ARRAY_SIZE" />
+            </lowerValueInternal>
+            <upperValueInternal>
+              <literalString
+                Id="2e42c2f1-57fb-4f1a-8de0-34d80990f631"
+                name="Upper"
+                value="ARRAY_SIZE" />
+            </upperValueInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
+                LastKnownLocation="AOLDiagramm.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="42d3b121-8581-4774-ac95-9fbda1a7f427"
+            name="num_length"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isOrdered="true"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <description>Max length of existed items in Number</description>
+            <lowerValueInternal>
+              <literalString
+                Id="8da25bb3-258d-4b69-8ab4-3357c02a8359"
+                name="Lower"
+                value="1" />
+            </lowerValueInternal>
+            <upperValueInternal>
+              <literalString
+                Id="9f1c37db-8e3b-4d90-a22b-bfab382d435c"
+                name="Upper"
+                value="1" />
+            </upperValueInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
+                LastKnownLocation="AOLDiagramm.uml" />
+            </type_NamedElement>
+            <defaultValue>
+              <literalString
+                Id="2e65d915-44fb-460d-aed5-699d9cfe861c"
+                name="DefaultValue"
+                value="0" />
+            </defaultValue>
+          </property>
+          <property
+            Id="d78d0cfc-0457-41ef-be5a-99beee8e8f4d"
+            name="Number_neg"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <description>Is number negative</description>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                LastKnownName="Boolean"
+                LastKnownLocation="AOLDiagramm.uml" />
+            </type_NamedElement>
+            <defaultValue>
+              <literalString
+                Id="78c26ad3-d5b6-44d4-b0ad-53c191384c2c"
+                name="DefaultValue"
+                value="false" />
+            </defaultValue>
+          </property>
+          <property
+            Id="fbef9e82-7f29-41bf-b36c-44cd2ab7944a"
+            name="dot_pos"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <description>Relative position of the dot</description>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
+                LastKnownLocation="AOLDiagramm.uml" />
+            </type_NamedElement>
+            <defaultValue>
+              <literalString
+                Id="80c371d9-8655-4e22-8aa5-4a62313336d1"
+                name="DefaultValue"
+                value="-1" />
+            </defaultValue>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="e99e703e-86ab-4cdc-8a9c-433aeb9d7fee"
+            name="BaseLogic"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Basic constructor of Class</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4b3c157a-4137-4c34-af54-0330f131cb5d"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="2be36528-65a4-482e-ad3c-6e69bb72a906"
+                      LastKnownName="BaseLogic"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="a643b57a-59f3-4000-85aa-c316c272c8e4"
+            name="BaseLogic"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Copy of class</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f6b6838b-e583-4b1d-a5ae-a7c46b1e44de"
+                  name="X"
+                  direction="In">
+                  <description>Copy for class</description>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="2be36528-65a4-482e-ad3c-6e69bb72a906"
+                      LastKnownName="BaseLogic"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8e3073cc-85d0-4f1d-8328-42b9309e0367"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="2be36528-65a4-482e-ad3c-6e69bb72a906"
+                      LastKnownName="BaseLogic"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="78254e97-89dd-4a19-9ef2-070fcb5fff80"
+            name="length"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Get data from num_length</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="45b62d80-0359-469e-be1a-a221d2c18e96"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="07e6afcd-dc41-4902-98a8-9268dc29b802"
+            name="set_length"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Method to set new length</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="04cfaf48-3eb7-40d8-8e6d-9ec5009ec311"
+                  name="newlength"
+                  direction="In">
+                  <description>New length</description>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="9512d47d-4277-48ec-ac37-11626319b007"
+            name="get_NumFromArray"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Method to get number from array</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="647d8919-f4cc-48a4-af39-668df99d7b36"
+                  name="index"
+                  direction="In">
+                  <description>index for array</description>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="92e66503-e7a9-4e50-9f43-4b22ababee3c"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="4a7e9d21-6d24-4520-b117-d77be1771e80"
+            name="set_NumInArray"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Method to set value to index in array</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f0cfbdd3-5c4b-4bb3-8236-afb47ad243c7"
+                  name="index"
+                  direction="In">
+                  <description>index of array</description>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="b45ff03b-2c14-4648-9850-a3b46e682682"
+                  name="value"
+                  direction="In">
+                  <description>new value for index</description>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="efef44dc-5384-4f01-a5a4-d6e638c071e7"
+            name="isNegative"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Return true if number is negative, false otherwise...</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e93fe50e-dfc7-4d5a-b9ef-65f4eeb5d85d"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="89658683-52cc-48ab-b423-6658bb4103cf"
+            name="setNegative"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8bd94401-d46e-4dd8-8f15-11c74c58bcb1"
+                  name="neg"
+                  direction="In">
+                  <description>Set to true if number is now negative, otherwise false</description>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="2d943a85-8485-4a83-b85d-d19f9d58f2e8"
+            name="getDotPos"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Method to get dot position, return -1 if no dot pos was found</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="cabb07ae-eccf-44c4-b860-6785c108bec4"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="a13bb9f9-6289-49a1-a679-1b3f227708c3"
+            name="setDotPos"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Method to set new position of a dot, change to -1 to remove dot</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="cc9a1aee-2275-431e-8560-d34f8cfb8290"
+                  name="newpos"
+                  direction="In">
+                  <description>new position of dot</description>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="5c6b1cb8-7488-48d7-b5c9-ab18f1dd75a5"
+            name="isEmpty"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Returns true if array is empty, false otherwise...</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1f56a1bd-dd13-481c-8659-4d7980990bf0"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="ffed9ea5-7a38-4fc7-ac88-9f43d1a96504"
+            name="ReadNumber"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Method to convert string value to int array</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="b51e6ea8-f78b-4774-98ec-c8e4b3354a3a"
+                  name="buffer"
+                  direction="In">
+                  <description>Symbols array to read from</description>
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="d35b9389-6c20-4175-a3ea-92866d6bd2bb"
+                      LastKnownName="char"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3588290c-2f7c-4968-aac3-5fba58c50099"
+                  name="length"
+                  direction="In">
+                  <description>Sizeof string</description>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="9fb07085-bab6-4e06-a5cd-272e499d3af1"
+            name="PrintNumbers"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Method to print numbers from array</description>
+          </operation>
+          <operation
+            Id="88407ee9-8d5c-46c5-936a-a74ae8d182bc"
+            name="Equalize_Nums"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Method is used, to equalize nums of 2 objects. Add 0 to begin and to the end of integer array.</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f1f30031-714b-4bf6-a99d-f606e41f7a34"
+                  name="X"
+                  direction="In">
+                  <description>Baselogic class</description>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="2be36528-65a4-482e-ad3c-6e69bb72a906"
+                      LastKnownName="BaseLogic"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="9cad6537-a48e-4754-a8b5-721cf52ccff4"
+            name="Add_Zeros_At_Begin"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Count of zeros, which need to add at begin of array</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6d6de72b-2371-4b7c-8dda-c2ad59577837"
+                  name="count"
+                  direction="In">
+                  <description>Count of zeros</description>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                  <defaultValue>
+                    <literalString
+                      Id="8e74fc71-cd95-48fb-91b8-88cde4541efe"
+                      value="1" />
+                  </defaultValue>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="94111132-5843-45a1-a98b-c50b1e153cb7"
+            name="Add_Zeros_At_End"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Method to add zeros at the end of array after dot</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="421647dc-6654-4c94-9ba1-2a0e9fad148f"
+                  name="count"
+                  direction="In">
+                  <description>Count of zeros</description>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                  <defaultValue>
+                    <literalString
+                      Id="f58ad355-b32f-4792-84f9-34a423f46d7c"
+                      value="1" />
+                  </defaultValue>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="b5a76f97-c76d-4294-81d6-5b037f80f1ee"
+            name="CompareInt"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Method needed to compare 2 numbers. Returns 1 if this &gt; X. Returns 2 if this &lt; X. Returns 0 if this == X</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="507c016f-24d5-4863-813e-2f7f506868e6"
+                  name="X"
+                  direction="In">
+                  <description>Object of BaseLogic</description>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="2be36528-65a4-482e-ad3c-6e69bb72a906"
+                      LastKnownName="BaseLogic"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="3bde43b7-7eed-4fbe-ad1a-b5f8ad33e510"
+            name="Minus"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Object of this class get a result, after sub x and y</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c70ef29c-8172-41f3-9cab-b1fd948eb8de"
+                  name="X"
+                  direction="In">
+                  <description>First object to sub</description>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="2be36528-65a4-482e-ad3c-6e69bb72a906"
+                      LastKnownName="BaseLogic"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="30484727-fbe4-4bf7-bcd4-f44c9383fa8d"
+                  name="Y"
+                  direction="In">
+                  <description>Second object to sub</description>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="2be36528-65a4-482e-ad3c-6e69bb72a906"
+                      LastKnownName="BaseLogic"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="cc11868c-6b5e-4f7e-ba03-ffa3156757b9"
+            name="Summ"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <description>Object of this class get a result, after sum x and y</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="41209910-203e-494a-861b-82be80a0a7c5"
+                  name="X"
+                  direction="In">
+                  <description>First object to sum</description>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="2be36528-65a4-482e-ad3c-6e69bb72a906"
+                      LastKnownName="BaseLogic"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="9d71ff4a-1321-4ef2-a522-9fd33611aae9"
+                  name="Y"
+                  direction="In">
+                  <description>Second object to sum</description>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="2be36528-65a4-482e-ad3c-6e69bb72a906"
+                      LastKnownName="BaseLogic"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="21cb1c65-4d4f-446a-b63b-e071af618d23"
+        name="int" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="d35b9389-6c20-4175-a3ea-92866d6bd2bb"
+        name="char" />
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

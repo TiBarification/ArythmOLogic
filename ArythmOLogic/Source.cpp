@@ -58,16 +58,14 @@ void Menu()
 		cin >> wMode;
 		switch (wMode[0])
 		{
-			case '1': 
-			
+			case '1':
 				rez.ReadNumber(nullstr, 1); // обнуляем результат
-			cout << "\nEnter number #1: ";
-			if (!Enter(number1)) break;
-			cout << "\nEnter number #2: ";
-			Enter(number2);
-			break;
-
-			case '2': 
+				cout << "\nEnter number #1: ";
+				if (!Enter(number1)) break;
+				cout << "\nEnter number #2: ";
+				Enter(number2);
+				break;
+			case '2':
 				break;
 			case '3':
 				if (number1.isEmpty() == false && number2.isEmpty() == false)
@@ -100,10 +98,10 @@ void Menu()
 				}
 				break;
 			case '5': 
-				/*if (!(number1.isEmpty() && number2.isEmpty()))
-				rez = rez.Karatsuba_Mul(number1, number2);
+				if (!(number1.isEmpty() && number2.isEmpty()))
+					rez = rez.Karatsuba_Mul(number1, number2);
 				else
-				cout << "Incorrect numbers" << endl;*/
+					cout << "Incorrect numbers" << endl;
 				break;
 			case '6': 
 				break;
