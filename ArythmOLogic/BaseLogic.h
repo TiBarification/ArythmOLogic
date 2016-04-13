@@ -2,12 +2,13 @@
 #include <iostream>
 #include <cstdlib>
 using namespace std;
-#define ARRAY_SIZE 64
+
+const int array_size = 64;
 
 class BaseLogic
 {
 private:
-	int Number[ARRAY_SIZE];
+	int Number[array_size];
 	int num_length = 0;
 	bool Number_neg = false;
 	int dot_pos = -1; // If pos = -1, then no dot
@@ -48,6 +49,7 @@ public:
 	void ReadNumber(char*, int);
 	void PrintNumbers();
 	bool Equalize_Nums(BaseLogic&);
+	void FillRange(const BaseLogic&, int, int);
 	
 	void Add_Zeros_At_Begin(int);
 	void Add_Zeros_At_End(int);
@@ -63,8 +65,12 @@ public:
 	void Minus(BaseLogic, BaseLogic);
 	// Summ operation
 	void Summ(BaseLogic, BaseLogic);
+	// Karatsuba mul
+	BaseLogic Karatsuba_Mul(const BaseLogic&, const BaseLogic&);
+	// naive mul
+	void Naive_Mul(const BaseLogic&, const BaseLogic&);
 	// Div operation
-	//void Div(BaseLogic, BaseLogic);
+	void Div(BaseLogic, BaseLogic);
 
 private:
 	bool isSymbolNumber(char);
