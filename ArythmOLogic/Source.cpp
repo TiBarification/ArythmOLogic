@@ -98,10 +98,11 @@ void Menu()
 				}
 				break;
 			case '5': 
-				if (!(number1.isEmpty() && number2.isEmpty()))
+				/*if (!(number1.isEmpty() && number2.isEmpty()))
 					rez = rez.Karatsuba_Mul(number1, number2);
 				else
-					cout << "Incorrect numbers" << endl;
+					cout << "Incorrect numbers" << endl;*/
+				rez.Naive_Mul(number1, number2);
 				break;
 			case '6': 
 				break;

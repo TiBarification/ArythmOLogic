@@ -364,29 +364,42 @@ BaseLogic BaseLogic::Karatsuba_Mul(const BaseLogic&X, const BaseLogic&Y)
 	return res;
 }
 
-//void BaseLogic::Div(BaseLogic A, BaseLogic B)
-//{
-//	BaseLogic A1;
-//	for (int i = 0; i < B.length(); i++)
-//	{
-//		A1.set_NumInArray(i, A.get_NumFromArray(i));
-//		A1.set_length(i + 1);
-//	}
-//
-//	if (A1.CompareInt(B) == 2) // A1 < B
-//	{
-//		// Add num to A1 from A
-//		A1.set_length(A1.length() + 1);
-//		A1.set_NumInArray(A1.length(), A.get_NumFromArray(A1.length()));
-//	}
-//
-//	// Parse all numbers to find max
-//	int C = 0;
-//	do
-//	{
-//
-//	} while (C * B <= A1);
-//}
+void BaseLogic::Naive_Mul(const BaseLogic &A, const BaseLogic &B)
+{
+	auto len = A.length();
+
+	for (auto i = 0; i < ARRAY_SIZE; i++)
+		Number[i] = 0;
+
+	for (auto i = 0; i < len; ++i)
+	{
+		for (auto j = 0; j < len; ++j)
+		{
+			//Number[i + j] = 0;
+			Number[i + j] += A.get_NumFromArray(i) * B.get_NumFromArray(j);
+			num_length++;
+		}
+		//return;
+	}
+}
+
+void BaseLogic::Div(BaseLogic A, BaseLogic B)
+{
+	BaseLogic curValue, cur;
+	int x, l, r, m, osn = 10;
+	for (int i = A.length(); i >= 0; i--)
+	{
+		curValue.set_NumInArray(0, A.get_NumFromArray(i));
+		x = 0;
+		l = 0;
+		r = osn;
+		while (l <= r)
+		{
+			m = (l + r) >> 1;
+			//cur
+		}
+	}
+}
 
 void BaseLogic::Minus(BaseLogic X1, BaseLogic X2)
 {

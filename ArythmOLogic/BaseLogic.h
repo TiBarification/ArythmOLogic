@@ -66,8 +66,10 @@ public:
 	void Summ(BaseLogic, BaseLogic);
 	// Karatsuba mul
 	BaseLogic Karatsuba_Mul(const BaseLogic&, const BaseLogic&);
+	// naive mul
+	void Naive_Mul(const BaseLogic&, const BaseLogic&);
 	// Div operation
-	//void Div(BaseLogic, BaseLogic);
+	void Div(BaseLogic, BaseLogic);
 
 private:
 	bool isSymbolNumber(char);
