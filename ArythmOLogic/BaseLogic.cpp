@@ -2,18 +2,6 @@
 BaseLogic::BaseLogic()
 {
 }
-
-void BaseLogic::FillRange(const BaseLogic& X, int begin = 0, int end = 1)
-{
-	int k = 0;
-	for (int i = begin; i < end; i++)
-	{
-		Number[k] = X.get_NumFromArray(i);
-		num_length++;
-		k++;
-	}
-}
-
 BaseLogic::~BaseLogic()
 {
 }
@@ -130,7 +118,7 @@ bool BaseLogic::Equalize_Nums(BaseLogic &AnotherNumber)
 }
 void BaseLogic::Add_Zeros_At_Begin(int count)
 {
-	int* tempArray = new int[array_size];
+	int* tempArray = new int[ARRAY_SIZE];
 	for (int i = 0; i < count; ++i)
 		tempArray[i] = 0;
 	for (int i = 0; i < num_length; ++i)
@@ -255,152 +243,16 @@ void BaseLogic::Summ(BaseLogic X1, BaseLogic X2)
 		dot_pos = X1.getDotPos();
 }
 
-/*
-BaseLogic BaseLogic::Karatsuba_Mul(BaseLogic A, BaseLogic B)
-{
-	BaseLogic product; // result
-	product.set_length(A.length() + B.length());
-
-	// Multiply karatsuba
-	BaseLogic a_part1; // A junior
-	//a_part1.set_length((A.length() + 1) / 2);
-	a_part1.FillRange(A, 0, (A.length() / 2));
-
-	BaseLogic a_part2; // A senior
-	a_part2.FillRange(A, a_part1.length(), A.length());
-
-	BaseLogic b_part1; // B junior
-	b_part1.FillRange(B, 0, (B.length() / 2));
-	
-	BaseLogic b_part2; // B senior
-	b_part2.FillRange(B, b_part1.length(), B.length());
-
-	BaseLogic sum_of_a_parts;
-	sum_of_a_parts.Summ(a_part1, a_part2); // Sum of A parts
-	// Normalize sum_of_a_parts ??
-	BaseLogic sum_of_b_parts;
-	sum_of_b_parts.Summ(b_part1, b_part2); // Sum of B parts
-	// Normalize sum_of_b_parts ??
-	BaseLogic product_of_sums_of_parts;
-	product_of_sums_of_parts.Karatsuba_Mul(sum_of_a_parts, sum_of_b_parts);
-	
-	// Multiply of sum parts
-	BaseLogic product_of_first_parts;
-	product_of_first_parts.Karatsuba_Mul(a_part1, b_part1); // Junior term
-	BaseLogic product_of_second_parts;
-	product_of_second_parts.Karatsuba_Mul(a_part2, b_part2); // Senior term
-	BaseLogic sum_of_middle_terms, sums_minus_first_parts;
-	sums_minus_first_parts.Minus(product_of_sums_of_parts, product_of_first_parts);
-	sum_of_middle_terms.Minus(sums_minus_first_parts, product_of_second_parts);
-
-	//product.Summ(a_)
-
-	return product;
-} */
-
-
-BaseLogic BaseLogic::Karatsuba_Mul(const BaseLogic&X, const BaseLogic&Y)
-{
-	auto len = X.length();
-	BaseLogic Xr, Xl, Yr, Yl, res;
-
-	auto k = len / 2;
-
-	Xr.FillRange(X, 0, k);
-	Xl.FillRange(X, k, X.length());
-	Yr.FillRange(Y, 0, k);
-	Yl.FillRange(Y, k, Y.length());
-
-	BaseLogic P1, P2;
-	P1 = P1.Karatsuba_Mul(Xl, Yl);
-	P2 = P2.Karatsuba_Mul(Xr, Yr);
-
-	BaseLogic Xlr, Ylr;
-
-	int n1, n2;
-	for (int i = 0; i < k; ++i)
-	{
-		n1 = Xl.get_NumFromArray(i);
-		n2 = Xr.get_NumFromArray(i);
-		Xlr.set_NumInArray(i, n1 + n2);
-
-		n1 = Yl.get_NumFromArray(i);
-		n2 = Yr.get_NumFromArray(i);
-		Ylr.set_NumInArray(i, n1 + n2);
-	}
-
-	BaseLogic P3 = Karatsuba_Mul(Xlr, Ylr);
-
-	int n3;
-	for (auto i = 0; i < len; ++i)
-	{
-		n1 = P1.get_NumFromArray(i);
-		n2 = P2.get_NumFromArray(i);
-		n3 = P3.get_NumFromArray(i);
-		n3 -= n2 + n1;
-		P3.set_NumInArray(i, n3);
-	}
-
-	for (auto i = len; i < len; ++i)
-	{
-		n1 = P2.get_NumFromArray(i);
-		res.set_NumInArray(i, n1);
-	}
-
-	for (auto i = len; i < 2 * len; ++i)
-	{
-		n1 = P1.get_NumFromArray(i - len);
-		res.set_NumInArray(i, n1);
-	}
-
-	for (auto i = k; i < len + k; ++i)
-	{
-		n1 = res.get_NumFromArray(i);
-		n3 = P3.get_NumFromArray(i - k);
-		n1 += n3;
-		res.set_NumInArray(i, n1);
-	}
-
-	return res;
-}
-
-void BaseLogic::Naive_Mul(const BaseLogic &A, const BaseLogic &B)
-{
-	auto len = A.length();
-
-	for (auto i = 0; i < array_size; i++) 
-		Number[i] = 0;
-
-	for (auto i = 0; i < len; i++) // 201
-	{
-		if (A.get_NumFromArray(i) == 0) 
-		for (auto j = 0; j < len; j++) // 344
-		{
-			//Number[i + j] = 0;
-			Number[i + j] += A.get_NumFromArray(i) * B.get_NumFromArray(j); //69144
-			//num_length++;
-		}
-		//return;
-	}
-}
-
-void BaseLogic::Div(BaseLogic A, BaseLogic B)
-{
-	BaseLogic curValue, cur;
-	int x, l, r, m, osn = 10;
-	for (int i = A.length(); i >= 0; i--)
-	{
-		curValue.set_NumInArray(0, A.get_NumFromArray(i));
-		x = 0;
-		l = 0;
-		r = osn;
-		while (l <= r)
-		{
-			m = (l + r) >> 1;
-			//cur
-		}
-	}
-}
+//void BaseLogic::Div(BaseLogic X1, BaseLogic X2)
+//{
+//	int temp_length = 0;
+//	BaseLogic temp;
+//	for (int i = X1.length(); i >= 0; i--)
+//	{
+//		temp.set_NumInArray(0, X1.get_NumFromArray(i));
+//		// Find max number (x), to make this true: b * x <= 
+//	}
+//}
 
 void BaseLogic::Minus(BaseLogic X1, BaseLogic X2)
 {
