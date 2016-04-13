@@ -34,7 +34,7 @@ public:
 	bool isEmpty() const { return !(length()); }
 
 	//operator =
-	/*void operator= (const BaseLogic& X)
+	void operator= (const BaseLogic& X)
 	{
 		for (int i = 0; i < X.length(); i++)
 		{
@@ -43,7 +43,7 @@ public:
 		num_length = X.length();
 		Number_neg = X.isNegative();
 		dot_pos = X.getDotPos();
-	} */
+	}
 
 	// Other
 	void ReadNumber(char* str, int len);

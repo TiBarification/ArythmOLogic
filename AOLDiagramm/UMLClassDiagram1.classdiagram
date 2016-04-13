@@ -1,22 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="7763b1ff-18f8-40cf-8f72-395c73dca07d" name="UMLClassDiagram1" linkedPackageId="be076c53-1bc2-426d-b066-b65129d02291" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="f21b5df9-29a2-4d36-a6d2-98b84ac1fbd0">
-      <profileInstance Id="ad7d74e5-0f70-4550-a9a8-e813b9b44f89" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="7bdaa3b4-171e-4199-acb9-7984a615d97d">
-      <profileInstance Id="ac4ab4bc-beff-4f34-b679-489bc22dbb25" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
+  <ownedCommentsInternal>
+    <comment Id="cd280e45-3415-4962-b19e-9baa2a49b227">
+      <elementDefinition Id="30491cc7-ca75-4215-9986-e584fdd72c56" />
+      <body>Basic class for work with long numbers</body>
+      <annotatedElements>
+        <classMoniker Id="e332317d-a461-431f-b369-c4c15a4ef828" LastKnownName="BaseLogic" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
-      <class Id="e332317d-a461-431f-b369-c4c15a4ef828" name="BaseLogic" visibility="Private" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="e332317d-a461-431f-b369-c4c15a4ef828" name="BaseLogic" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="2be36528-65a4-482e-ad3c-6e69bb72a906" />
         <ownedAttributesInternal>
           <property Id="605e4f96-e91b-4e72-b07b-2bb1a1f1abdf" name="Number" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -270,18 +265,16 @@
             <elementDefinition Id="ffed9ea5-7a38-4fc7-ac88-9f43d1a96504" />
             <ownedParameters>
               <operationHasOwnedParameters>
-                <parameter Id="a4be857f-7407-44bf-8319-ce29f583acec" name="buffer" direction="In">
-                  <description>Symbols array to read from</description>
-                  <elementDefinition Id="b51e6ea8-f78b-4774-98ec-c8e4b3354a3a" />
+                <parameter Id="dbfa7434-1bf4-4855-bbae-d591c90252ea" name="buffer" direction="In" isUnique="false">
+                  <elementDefinition Id="a343bfe1-d99f-4a12-89be-c1eb6cd98ca1" />
                   <type_NamedElement>
-                    <referencedTypeMoniker Id="e289ce51-bc15-46cf-9fba-8982c6b4249a" LastKnownName="char" />
+                    <referencedTypeMoniker Id="dddbdcab-ab00-4f72-b235-b4f816d5b698" LastKnownName="char*" />
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
-                <parameter Id="03436df3-7f0a-42ef-926a-e861c941fa6e" name="length" direction="In">
-                  <description>Sizeof string</description>
-                  <elementDefinition Id="3588290c-2f7c-4968-aac3-5fba58c50099" />
+                <parameter Id="ce54607c-8546-43af-a6a9-e020eb551c84" name="length" direction="In" isUnique="false">
+                  <elementDefinition Id="221b37a2-18d7-469c-891b-e5a8b9697b0d" />
                   <type_NamedElement>
                     <referencedTypeMoniker Id="0402c041-634b-4f27-99e9-b838d2f5bb54" LastKnownName="Integer" />
                   </type_NamedElement>
@@ -292,6 +285,13 @@
           <operation Id="9847a658-7e96-4786-9bba-51973c946546" name="PrintNumbers" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <description>Method to print numbers from array</description>
             <elementDefinition Id="9fb07085-bab6-4e06-a5cd-272e499d3af1" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="1592f56a-82c5-4eb6-bc5b-e418316ae89b" name="ostream &amp;" direction="In" isUnique="false">
+                  <elementDefinition Id="9110ab3c-00fb-41fa-8f3c-fca403efc0ac" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
           </operation>
           <operation Id="d2e10b29-ea93-4d61-9166-e289841eaaf0" name="Equalize_Nums" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <description>Method is used, to equalize nums of 2 objects. Add 0 to begin and to the end of integer array.</description>
@@ -353,11 +353,18 @@
             <elementDefinition Id="b5a76f97-c76d-4294-81d6-5b037f80f1ee" />
             <ownedParameters>
               <operationHasOwnedParameters>
-                <parameter Id="d05f4568-33d0-4e15-ba68-7bb82c77ee08" name="X" direction="In">
-                  <description>Object of BaseLogic</description>
-                  <elementDefinition Id="507c016f-24d5-4863-813e-2f7f506868e6" />
+                <parameter Id="678013c1-5bbe-485c-b569-339662b439bc" name="X" direction="In" isUnique="false">
+                  <elementDefinition Id="00a9ed89-f475-43f3-8b27-064a7e862ab2" />
                   <type_NamedElement>
                     <referencedTypeMoniker Id="cbbaf36c-aff8-4efe-be19-f8d8d7b53f0b" LastKnownName="BaseLogic" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="8e759e1c-84f4-466d-bad9-7b17ce99943d" direction="Return" isUnique="false">
+                  <elementDefinition Id="c333151e-6e7a-4e16-985d-e6b036ba27a7" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="fd17de04-6b09-4734-ac9b-d2c24968d0a3" LastKnownName="int" />
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
@@ -470,17 +477,36 @@
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <referencedType Id="e289ce51-bc15-46cf-9fba-8982c6b4249a" name="char" isAbstract="false" isLeaf="false" cachedFullName="char">
-        <elementDefinition Id="d35b9389-6c20-4175-a3ea-92866d6bd2bb" />
+      <referencedType Id="cb1becb1-9c4b-4a9b-b512-16cae08f88a2" name="BaseLogic" isAbstract="false" isLeaf="false" cachedFullName="AOLDiagramm::BaseLogic">
+        <elementDefinition Id="2be36528-65a4-482e-ad3c-6e69bb72a906" />
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <referencedType Id="cb1becb1-9c4b-4a9b-b512-16cae08f88a2" name="BaseLogic" isAbstract="false" isLeaf="false" cachedFullName="AOLDiagramm::BaseLogic">
-        <elementDefinition Id="2be36528-65a4-482e-ad3c-6e69bb72a906" />
+      <referencedType Id="fd17de04-6b09-4734-ac9b-d2c24968d0a3" name="int" isAbstract="false" isLeaf="false" cachedFullName="int">
+        <elementDefinition Id="21cb1c65-4d4f-446a-b63b-e071af618d23" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="dddbdcab-ab00-4f72-b235-b4f816d5b698" name="char*" isAbstract="false" isLeaf="false" cachedFullName="char*">
+        <elementDefinition Id="28b7c623-b0a7-4ae4-962c-344e03c24526" />
       </referencedType>
     </packageHasNamedElement>
   </packagedElements>
   <package Id="be076c53-1bc2-426d-b066-b65129d02291" name="AOLDiagramm">
     <elementDefinition Id="9c1b8112-6140-4532-b62c-9238deec4f5b" />
+    <profileInstances>
+      <packageHasProfileInstances Id="f21b5df9-29a2-4d36-a6d2-98b84ac1fbd0">
+        <profileInstance Id="ad7d74e5-0f70-4550-a9a8-e813b9b44f89" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="7bdaa3b4-171e-4199-acb9-7984a615d97d">
+        <profileInstance Id="ac4ab4bc-beff-4f34-b679-489bc22dbb25" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </logicalClassDesignerModel>

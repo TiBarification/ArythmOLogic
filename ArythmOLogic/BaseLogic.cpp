@@ -339,7 +339,7 @@ void BaseLogic::Karatsuba_Mul(const BaseLogic&X, const BaseLogic&Y)
 	auto k = 1;//len / 2;
 	if (k <= 1)
 	{
-		
+
 	}
 	else
 	{
@@ -349,7 +349,7 @@ void BaseLogic::Karatsuba_Mul(const BaseLogic&X, const BaseLogic&Y)
 		// P2 = 0
 		// P3 = 7 * 0
 		// P3 = 0
-		
+
 
 		//Xr.FillRange(X, 0, k);
 		//Xl.FillRange(X, k, X.length());
@@ -449,7 +449,7 @@ void BaseLogic::Naive_Mul(const BaseLogic &X, const BaseLogic &Y)
 		Number[i] = 0;
 
 	for (int i = 0; i < X.length(); ++i)
-	{
+		{
 		for (int j = 0; j < Y.length(); ++j)
 			Number[i + j] += X.get_NumFromArray(i) * Y.get_NumFromArray(j);
 	}

@@ -3,6 +3,18 @@
   dslVersion="1.0.0.0"
   Id="9c1b8112-6140-4532-b62c-9238deec4f5b"
   name="AOLDiagramm" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="30491cc7-ca75-4215-9986-e584fdd72c56">
+      <body>Basic class for work with long numbers</body>
+      <annotatedElements>
+        <classMoniker
+          Id="2be36528-65a4-482e-ad3c-6e69bb72a906"
+          LastKnownName="BaseLogic"
+          LastKnownLocation="AOLDiagramm.uml" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
   <profileInstances>
     <packageHasProfileInstances
       Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
@@ -22,7 +34,6 @@
       <class
         Id="2be36528-65a4-482e-ad3c-6e69bb72a906"
         name="BaseLogic"
-        visibility="Private"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -467,24 +478,24 @@
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="b51e6ea8-f78b-4774-98ec-c8e4b3354a3a"
+                  Id="a343bfe1-d99f-4a12-89be-c1eb6cd98ca1"
                   name="buffer"
-                  direction="In">
-                  <description>Symbols array to read from</description>
+                  direction="In"
+                  isUnique="false">
                   <type_NamedElement>
                     <undefinedTypeMoniker
-                      Id="d35b9389-6c20-4175-a3ea-92866d6bd2bb"
-                      LastKnownName="char"
+                      Id="28b7c623-b0a7-4ae4-962c-344e03c24526"
+                      LastKnownName="char*"
                       LastKnownLocation="AOLDiagramm.uml" />
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="3588290c-2f7c-4968-aac3-5fba58c50099"
+                  Id="221b37a2-18d7-469c-891b-e5a8b9697b0d"
                   name="length"
-                  direction="In">
-                  <description>Sizeof string</description>
+                  direction="In"
+                  isUnique="false">
                   <type_NamedElement>
                     <primitiveTypeMoniker
                       Id="220a3521-e091-4221-bae9-3ef9018e845c"
@@ -504,6 +515,15 @@
             concurrency="Sequential"
             isQuery="false">
             <description>Method to print numbers from array</description>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="9110ab3c-00fb-41fa-8f3c-fca403efc0ac"
+                  name="ostream &amp;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
           </operation>
           <operation
             Id="88407ee9-8d5c-46c5-936a-a74ae8d182bc"
@@ -605,14 +625,27 @@
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="507c016f-24d5-4863-813e-2f7f506868e6"
+                  Id="00a9ed89-f475-43f3-8b27-064a7e862ab2"
                   name="X"
-                  direction="In">
-                  <description>Object of BaseLogic</description>
+                  direction="In"
+                  isUnique="false">
                   <type_NamedElement>
                     <classMoniker
                       Id="2be36528-65a4-482e-ad3c-6e69bb72a906"
                       LastKnownName="BaseLogic"
+                      LastKnownLocation="AOLDiagramm.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c333151e-6e7a-4e16-985d-e6b036ba27a7"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="21cb1c65-4d4f-446a-b63b-e071af618d23"
+                      LastKnownName="int"
                       LastKnownLocation="AOLDiagramm.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -711,6 +744,11 @@
       <undefinedType
         Id="d35b9389-6c20-4175-a3ea-92866d6bd2bb"
         name="char" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="28b7c623-b0a7-4ae4-962c-344e03c24526"
+        name="char*" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
