@@ -1,4 +1,6 @@
 #include "BaseLogic.h"
+#include <fstream>
+#include <cstring>
 
 bool CheckString(char* input, int len)
 {
@@ -10,9 +12,9 @@ bool CheckString(char* input, int len)
 	for (i; i < len; i++)
 	{
 		if (isdigit(input[i])) continue;
-		else if (!dot_found && isdigit(input[i-1]) && input[i] == '.')
+		else if (!dot_found && isdigit(input[i - 1]) && input[i] == '.')
 			dot_found = true;
-		else if (input[i] == '\0' && input[i-1] != '.') return true;
+		else if (input[i] == '\0' && input[i - 1] != '.') return true;
 		else return false;
 	}
 
@@ -34,11 +36,76 @@ bool Enter(BaseLogic& number)
 		return false;
 	}
 }
+void Enter_with_file(char* namef, fstream &f, BaseLogic &number1, BaseLogic &number2)
+{
+	f.open(namef, ios::in);
+	BaseLogic number;
+	f.read((char*)&number, sizeof number);
+	number1 = number;
+
+	f.read((char*)&number, sizeof number);
+	number2 = number;
+
+	f.close();
+
+}
+
+void Save_with_file(char* namef, fstream &f, BaseLogic number1, BaseLogic number2)
+{
+	f.open(namef, ios::out);
+
+	f.write((char*)&number1, sizeof number1);
+	f.write((char*)&number2, sizeof number2);
+
+	f.close();
+}
+void Save_with_file_rez(char* namef, fstream &f, BaseLogic rez)
+{
+	f.open(namef, ios::out);
+
+	f.write((char*)&rez, sizeof rez);
+
+	f.close();
+}
+
+bool Analusis_stream(fstream &f, char* namef)
+{
+	f.open(namef, ios::in);
+	if (!f.is_open()) return false;
+	if (f.eof())
+	{
+		f.clear();
+		f.seekg(0);
+	}
+	return true;
+}
+void Read_file(fstream &f, char* name)
+{
+	char symbol;
+	f.open(name, ios::in); //read
+	if (!f.is_open())
+	{
+		cerr << "Error";
+		exit(1);
+	}
+	f.clear();
+	f.seekg(0);
+
+	cout << "File consists of: " << endl;
+	while (f.read((char*)&symbol, sizeof symbol))
+	{
+		cout << symbol;
+	}
+	f.close();
+}
 
 void Menu()
 {
 	BaseLogic number1, number2, rez;
-	while (true) // bad idea
+	fstream f;
+	bool choose;
+	char namef[30];
+	while (true)
 	{
 		system("CLS");
 		cout << "============================ARYTHMOLOGIC MENU============================" << endl << endl;
@@ -58,78 +125,125 @@ void Menu()
 		cin >> wMode;
 		switch (wMode[0])
 		{
-			case '1':
-				rez.ReadNumber(nullstr, 1); // обнуляем результат
-				cout << "\nEnter number #1: ";
-				if (!Enter(number1)) break;
-				cout << "\nEnter number #2: ";
-				Enter(number2);
+		case '1':
+			rez.ReadNumber(nullstr, 1); // обнуляем результат
+			cout << "\nEnter number #1: ";
+			if (!Enter(number1))
+			{
+				cout << "\nError! ";
+				system("PAUSE");
 				break;
-			case '2':
-				break;
-			case '3':
-				if (number1.isEmpty() == false && number2.isEmpty() == false)
-				{
-					rez.setDotPos(-1);
-					rez.setNegative(0);
-					rez.set_length(0);
-					rez.Summ(number1, number2);
-					last_action = '+';
-				}
-				else
-				{
-					cout << "Incorrect numbers. " << endl;
-					system("PAUSE");
-				}
-				break;
-			case '4':
-				if (number1.isEmpty() == false && number2.isEmpty() == false)
-				{
-					rez.setDotPos(-1);
-					rez.setNegative(0);
-					rez.set_length(0);
-					rez.Minus(number1, number2);
-					last_action = '-';
-				}
-				else
-				{
-					cout << "Incorrect numbers. " << endl;
-					system("PAUSE");
-				}
-				break;
-			case '5': 
-				/*if (!(number1.isEmpty() && number2.isEmpty()))
-					rez = rez.Karatsuba_Mul(number1, number2);
-				else
-					cout << "Incorrect numbers" << endl;*/
+			}
+			cout << "\nEnter number #2: ";
+			Enter(number2);
+			break;
+		case '2':
+			cout << "\nEnter name file: ";
+			cin >> namef;
+			Enter_with_file(namef, f, number1, number2);
+			cout << "Number #1: "; number1.PrintNumbers();
+			cout << "Number #2: "; number2.PrintNumbers();
+			system("PAUSE");
+			break;
+		case '3':
+			if (number1.isEmpty() == false && number2.isEmpty() == false)
+			{
+				rez.setDotPos(-1);
+				rez.setNegative(0);
+				rez.set_length(0);
+				rez.Summ(number1, number2);
+				last_action = '+';
+			}
+			else
+			{
+				cout << "Incorrect numbers. " << endl;
+				system("PAUSE");
+			}
+			break;
+		case '4':
+			if (number1.isEmpty() == false && number2.isEmpty() == false)
+			{
+				rez.setDotPos(-1);
+				rez.setNegative(0);
+				rez.set_length(0);
+				rez.Minus(number1, number2);
+				last_action = '-';
+			}
+			else
+			{
+				cout << "Incorrect numbers. " << endl;
+				system("PAUSE");
+			}
+			break;
+		case '5':
+			if (number1.isEmpty() == false && number2.isEmpty() == false)
+			{
+				rez.setDotPos(-1);
+				rez.setNegative(0);
+				rez.set_length(0);
 				rez.Naive_Mul(number1, number2);
-				break;
-			case '6': 
-				break;
-			case '7': 
-				break;
-			case '8': 
-				break;
-			case '9': 
-				break;
-			case 'i': 
-				if (number1.isEmpty() == false && number2.isEmpty() == false && rez.isEmpty() == false)
-				{
-					number1.PrintNumbers();
-					cout << last_action;
-					number2.PrintNumbers();
-					cout << "=============================================================";
-					rez.PrintNumbers(); 
-				}
+				last_action = '*';
+			}
+			else
+			{
+				cout << "Incorrect numbers. " << endl;
+				system("PAUSE");
+			}
+			break;
+		case '6':
+			break;
+		case '7':
+			break;
+		case '8':
+			break;
+		case '9':
+
+			cout << "\nDo you want save numbers or result? (1/0) " << endl;
+			cin >> choose;
+			cout << "Enter name file: ";
+			cin >> namef;
+			if (choose)
+				if (number1.isEmpty() == false && number2.isEmpty() == false)
+					Save_with_file(namef, f, number1, number2);
 				else
-					cout << "Incorrect numbers or result. " << endl;
-				system("PAUSE");
-					break;
-			case 'e': 
-				return;
-			default: 
-				cout << "Incorrect work mode! "; 
-				system("PAUSE");
+				{
+					cout << "Error! Check data. ";
+					system("PAUSE");
+				}
+			else
+				if (rez.isEmpty() == false)
+					Save_with_file_rez(namef, f, rez);
+				else
+				{
+					cout << "Error! Check data. ";
+					system("PAUSE");
+				}
+
+			break;
+		case 'i':
+			if (number1.isEmpty() == false && number2.isEmpty() == false && rez.isEmpty() == false)
+			{
+				number1.PrintNumbers();
+				cout << last_action;
+				number2.PrintNumbers();
+				cout << "=============================================================";
+				rez.PrintNumbers();
+			}
+			else
+				cout << "Incorrect numbers or result. " << endl;
+			system("PAUSE");
+			break;
+		case 'e':
+			return;
+		case 'r':
+			cout << "\nEnter namef : ";
+			cin >> namef;
+			Read_file(f, namef);
+			system("PAUSE");
+			break;
+		default:
+			cout << "Incorrect work mode! ";
+			system("PAUSE");
 		}
 	}
 }
