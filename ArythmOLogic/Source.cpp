@@ -182,6 +182,7 @@ void Menu()
 					rez.setNegative(0);
 					rez.set_length(0);
 					rez.Naive_Mul(number1, number2);
+					rez.Normalize();
 					last_action = '*';
 				}
 				else

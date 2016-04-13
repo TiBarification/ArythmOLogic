@@ -328,7 +328,9 @@ void BaseLogic::Normalize()
 			Number[i] %= 10;
 		}
 	}
-	Remove_Zeros_At_Begin(1);
+	//Remove_Zeros_At_Begin(1);
+	if (Number[0] == 0) Remove_Zeros_At_Begin(1);
+	if (Number[num_length - 1] == 0) Remove_Zeros_At_End(1);
 }
 
 void BaseLogic::Karatsuba_Mul(const BaseLogic&X, const BaseLogic&Y)
@@ -447,12 +449,14 @@ void BaseLogic::Naive_Mul(const BaseLogic &X, const BaseLogic &Y)
 	num_length = X.length() + Y.length();
 	for (int i = 0; i < num_length; ++i)
 		Number[i] = 0;
-
+	Add_Zeros_At_Begin(1);
 	for (int i = 0; i < X.length(); ++i)
-		{
+	{
+
 		for (int j = 0; j < Y.length(); ++j)
 			Number[i + j] += X.get_NumFromArray(i) * Y.get_NumFromArray(j);
 	}
+	
 	Remove_Zeros_At_End(1);
 }
 
