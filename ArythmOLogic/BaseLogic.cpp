@@ -472,13 +472,13 @@ void BaseLogic::Naive_Mul(BaseLogic X, BaseLogic Y)
 
 	if (k == -1 && l != -1)
 	{
-		dot_pos = k + l +1;
+		dot_pos = k + l + X.length();
 	}
 	else
 	{
 		if (k != -1 && l == -1)
 		{
-			dot_pos = k + l +1;
+			dot_pos = k + l + Y.length();
 		}
 		else
 			dot_pos = k + l - 1;
