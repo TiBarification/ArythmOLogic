@@ -3,7 +3,7 @@
 #include <cstdlib>
 using namespace std;
 
-const int array_size = 64;
+const int array_size = 256;
 
 class BaseLogic
 {
@@ -14,15 +14,15 @@ private:
 	int dot_pos = -1; // If pos = -1, then no dot
 public:
 	BaseLogic();
-	BaseLogic(const BaseLogic&);
+	BaseLogic(const BaseLogic&X);
 	~BaseLogic();
 	
 	// Accessors & Mutators
 	int length() const { return num_length; }
 	void set_length(int newlength) { num_length = newlength; }
 
-	int get_NumFromArray(int) const;
-	void set_NumInArray(int, int);
+	int get_NumFromArray(int index) const;
+	void set_NumInArray(int index, int value);
 	
 	bool isNegative() const { return Number_neg; }
 	void setNegative(bool neg) { Number_neg = neg; }
@@ -46,13 +46,15 @@ public:
 	}
 
 	// Other
-	void ReadNumber(char*, int);
+	void ReadNumber(char* str, int len);
 	void PrintNumbers();
-	bool Equalize_Nums(BaseLogic&);
-	void FillRange(const BaseLogic&, int, int);
+	bool Equalize_Nums(BaseLogic&X);
+	void FillRange(const BaseLogic&, int begin, int end);
 	
-	void Add_Zeros_At_Begin(int);
-	void Add_Zeros_At_End(int);
+	void Add_Zeros_At_Begin(int count);
+	void Add_Zeros_At_End(int count);
+	void Remove_Zeros_At_Begin(int count); // Removes zeros at the start
+	void Remove_Zeros_At_End(int count); // Removes zeros at the end
 
 	//Compare operation
 
@@ -66,15 +68,18 @@ public:
 	// Summ operation
 	void Summ(BaseLogic, BaseLogic);
 	// Karatsuba mul
-	BaseLogic Karatsuba_Mul(const BaseLogic&, const BaseLogic&);
-	// naive mul
-	void Naive_Mul(const BaseLogic&, const BaseLogic&);
+	void Normalize(); // Work perfect
+	void Karatsuba_Mul(const BaseLogic&, const BaseLogic&); // not work
+	// Naive mul
+	void Naive_Mul(const BaseLogic&X, const BaseLogic&Y); // naive multiple, Working!!!
 	// Div operation
-	void Div(BaseLogic, BaseLogic);
+	void Div(BaseLogic, BaseLogic); // not work
+	// Exponent operation
+	void Exponent(const BaseLogic &X, const BaseLogic &Y, int &exp, bool &expon);
 
 private:
-	bool isSymbolNumber(char);
-	bool isSymbolDot(char);
+	bool isSymbolNumber(char c);
+	bool isSymbolDot(char c);
 
 };
 

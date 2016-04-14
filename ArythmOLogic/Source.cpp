@@ -103,7 +103,9 @@ void Menu()
 {
 	BaseLogic number1, number2, rez;
 	fstream f;
-	bool choose;
+	int exp;
+	bool choose, expon;
+	char wMode[1], last_action, nullstr[2] = "\0";
 	char namef[30];
 	while (true)
 	{
@@ -121,12 +123,13 @@ void Menu()
 		cout << "--> i <--  Display the result on the screen. " << endl;
 		cout << "--> e <--  Exit. " << endl;
 		cout << "\n>>> ";
-		char wMode[1], last_action, nullstr[2] = "\0";
 		cin >> wMode;
 		switch (wMode[0])
 		{
 			case '1':
-				rez.ReadNumber(nullstr, 1); // обнуляем результат
+				rez.setDotPos(-1);
+				rez.setNegative(0);
+				rez.set_length(0); // обнуляем результат
 				cout << "\nEnter number #1: ";
 				if (!Enter(number1)) 
 				{ 
@@ -143,6 +146,9 @@ void Menu()
 				Enter_with_file(namef, f, number1, number2);
 				cout << "Number #1: "; number1.PrintNumbers();
 				cout << "Number #2: "; number2.PrintNumbers();
+				rez.setDotPos(-1);
+				rez.setNegative(0);
+				rez.set_length(0);
 				system("PAUSE");
 				break;
 			case '3':
@@ -153,6 +159,7 @@ void Menu()
 					rez.set_length(0);
 					rez.Summ(number1, number2);
 					last_action = '+';
+					expon = false;
 				}
 				else
 				{
@@ -168,6 +175,7 @@ void Menu()
 					rez.set_length(0);
 					rez.Minus(number1, number2);
 					last_action = '-';
+					expon = false;
 				}
 				else
 				{
@@ -182,7 +190,9 @@ void Menu()
 					rez.setNegative(0);
 					rez.set_length(0);
 					rez.Naive_Mul(number1, number2);
+					rez.Normalize();
 					last_action = '*';
+					expon = false;
 				}
 				else
 				{
@@ -193,6 +203,10 @@ void Menu()
 			case '6': 
 				break;
 			case '7': 
+				cout << "Number #1: "; number1.PrintNumbers();
+				cout << "Number #2: "; number2.PrintNumbers();
+				rez.Exponent(number1, number2, exp, expon);
+				last_action = '^';
 				break;
 			case '8': 
 				break;
@@ -223,9 +237,15 @@ void Menu()
 			case 'i': 
 				if (number1.isEmpty() == false && number2.isEmpty() == false && rez.isEmpty() == false)
 				{
-					number1.PrintNumbers();
+					if (expon)
+						number2.PrintNumbers();
+					else
+						number1.PrintNumbers();
 					cout << last_action;
-					number2.PrintNumbers();
+					if (last_action == '^')
+						cout << "\n" << exp << endl;
+					else
+						number2.PrintNumbers();
 					cout << "=============================================================";
 					rez.PrintNumbers(); 
 				}
@@ -235,12 +255,6 @@ void Menu()
 					break;
 			case 'e': 
 				return;
-			case 'r':
-				cout << "\nEnter namef : ";
-				cin >> namef;
-				Read_file(f, namef);
-				system("PAUSE");
-				break;
 			default: 
 				cout << "Incorrect work mode! "; 
 				system("PAUSE");

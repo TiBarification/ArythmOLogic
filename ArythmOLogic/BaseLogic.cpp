@@ -38,7 +38,7 @@ void BaseLogic::ReadNumber(char* str, int len)
 	strcpy_s(query, len, str);
 	bool dot_found = false; // Если точка не была найдена следовательно это целое число
 	int k;
-	for (int i = 0; i < strlen(query) + 1; i++)
+	for (int i = 0; i < (int)(strlen(query)) + 1; i++)
 	{
 		if (i == 0 && query[i] == '-')
 			Number_neg = true;
@@ -152,6 +152,24 @@ void BaseLogic::Add_Zeros_At_End(int count)
 			Number[i] = 0;
 		}
 		num_length += count;
+	}
+}
+
+void BaseLogic::Remove_Zeros_At_Begin(int count)
+{
+	for (int k = 0; k < count; k++)
+	{
+		for (int i = 0; i < num_length; i++)
+			Number[i] = Number[i + 1];
+	}
+	num_length -= count;
+}
+
+void BaseLogic::Remove_Zeros_At_End(int count)
+{
+	for (int i = 0; i < count; i++)
+	{
+		num_length--;
 	}
 }
 
@@ -298,90 +316,162 @@ BaseLogic BaseLogic::Karatsuba_Mul(BaseLogic A, BaseLogic B)
 	return product;
 } */
 
-
-BaseLogic BaseLogic::Karatsuba_Mul(const BaseLogic&X, const BaseLogic&Y)
+void BaseLogic::Normalize()
 {
-	auto len = X.length();
-	BaseLogic Xr, Xl, Yr, Yl, res;
-
-	auto k = len / 2;
-
-	Xr.FillRange(X, 0, k);
-	Xl.FillRange(X, k, X.length());
-	Yr.FillRange(Y, 0, k);
-	Yl.FillRange(Y, k, Y.length());
-
-	BaseLogic P1, P2;
-	P1 = P1.Karatsuba_Mul(Xl, Yl);
-	P2 = P2.Karatsuba_Mul(Xr, Yr);
-
-	BaseLogic Xlr, Ylr;
-
-	int n1, n2;
-	for (int i = 0; i < k; ++i)
+	for (int i = num_length - 1; i >= 0; i--)
 	{
-		n1 = Xl.get_NumFromArray(i);
-		n2 = Xr.get_NumFromArray(i);
-		Xlr.set_NumInArray(i, n1 + n2);
-
-		n1 = Yl.get_NumFromArray(i);
-		n2 = Yr.get_NumFromArray(i);
-		Ylr.set_NumInArray(i, n1 + n2);
+		if (i == 0 && Number[i] > 9)
+			Add_Zeros_At_Begin(1);
+		if (Number[i] > 9)
+		{
+			Number[i - 1] += Number[i] / 10;
+			Number[i] %= 10;
+		}
 	}
-
-	BaseLogic P3 = Karatsuba_Mul(Xlr, Ylr);
-
-	int n3;
-	for (auto i = 0; i < len; ++i)
-	{
-		n1 = P1.get_NumFromArray(i);
-		n2 = P2.get_NumFromArray(i);
-		n3 = P3.get_NumFromArray(i);
-		n3 -= n2 + n1;
-		P3.set_NumInArray(i, n3);
-	}
-
-	for (auto i = len; i < len; ++i)
-	{
-		n1 = P2.get_NumFromArray(i);
-		res.set_NumInArray(i, n1);
-	}
-
-	for (auto i = len; i < 2 * len; ++i)
-	{
-		n1 = P1.get_NumFromArray(i - len);
-		res.set_NumInArray(i, n1);
-	}
-
-	for (auto i = k; i < len + k; ++i)
-	{
-		n1 = res.get_NumFromArray(i);
-		n3 = P3.get_NumFromArray(i - k);
-		n1 += n3;
-		res.set_NumInArray(i, n1);
-	}
-
-	return res;
+	//Remove_Zeros_At_Begin(1);
+	if (Number[0] == 0) Remove_Zeros_At_Begin(1);
+	if (Number[num_length - 1] == 0) Remove_Zeros_At_End(1);
 }
 
-void BaseLogic::Naive_Mul(const BaseLogic &A, const BaseLogic &B)
+void BaseLogic::Karatsuba_Mul(const BaseLogic&X, const BaseLogic&Y)
 {
-	auto len = A.length();
+	auto len = X.length();
+	BaseLogic Xr, Xl, Yr, Yl;
 
-	for (auto i = 0; i < array_size; i++) 
-		Number[i] = 0;
-
-	for (auto i = 0; i < len; i++) // 201
+	auto k = 1;//len / 2;
+	if (k <= 1)
 	{
-		if (A.get_NumFromArray(i) == 0) 
-		for (auto j = 0; j < len; j++) // 344
-		{
-			//Number[i + j] = 0;
-			Number[i + j] += A.get_NumFromArray(i) * B.get_NumFromArray(j); //69144
-			//num_length++;
-		}
-		//return;
+
 	}
+	else
+	{
+		// 2 5 | 6 0
+		// n = 1
+		// P1 = 12
+		// P2 = 0
+		// P3 = 7 * 0
+		// P3 = 0
+
+
+		//Xr.FillRange(X, 0, k);
+		//Xl.FillRange(X, k, X.length());
+		//Yr.FillRange(Y, 0, k);
+		//Yl.FillRange(Y, k, Y.length());
+		Xl.FillRange(X, 0, k);
+		Xr.FillRange(X, k, len);
+		Yl.FillRange(Y, 0, k);
+		Yr.FillRange(Y, k, len);
+
+		BaseLogic sum_of_x_parts, sum_of_y_parts;
+		sum_of_x_parts.Summ(Xl, Xr);
+		sum_of_y_parts.Summ(Yl, Yr);
+
+		BaseLogic product_of_sums_of_parts;
+		product_of_sums_of_parts.Karatsuba_Mul(sum_of_x_parts, sum_of_y_parts);
+
+		BaseLogic product_of_first_parts, product_of_second_parts;
+		BaseLogic temp, sum_of_middle_terms;
+
+		temp.Minus(product_of_sums_of_parts, product_of_first_parts);
+		sum_of_middle_terms.Minus(temp, product_of_second_parts);
+
+		/*for (int i = 0; i < sum_of_middle_terms.length(); ++i)
+			Number[k+i]*/
+
+		//BaseLogic P1, P2;
+		//P1.Karatsuba_Mul(Xl, Yl);
+		//P2.Karatsuba_Mul(Xr, Yr);
+
+		//BaseLogic Xlr, Ylr;
+
+		//int n1, n2;
+		//for (int i = 0; i < k; ++i)
+		//{
+		//	n1 = Xl.get_NumFromArray(i);
+		//	n2 = Xr.get_NumFromArray(i);
+		//	if (n1 + n2 > 9)
+		//	{
+		//		Xlr.set_NumInArray(i, (n1 + n2) % 10);
+		//		//Xlr.set_NumInArray(i - 1, (n1 + n2) / 10);
+		//	}
+		//	else
+		//		Xlr.set_NumInArray(i, n1 + n2);
+
+		//	n1 = Yl.get_NumFromArray(i);
+		//	n2 = Yr.get_NumFromArray(i);
+
+		//	if (n1 + n2 > 9)
+		//	{
+		//		Ylr.set_NumInArray(i, (n1 + n2) % 10);
+		//		//Ylr.set_NumInArray(i - 1, (n1 + n2) / 10);
+		//	}
+		//	else
+		//		Ylr.set_NumInArray(i, n1 + n2);
+		//}
+
+		//BaseLogic P3;
+		//P3.Karatsuba_Mul(Xlr, Ylr);
+
+		//int n3;
+		//for (auto i = 0; i < len; ++i)
+		//{
+		//	n1 = P1.get_NumFromArray(i);
+		//	n2 = P2.get_NumFromArray(i);
+		//	n3 = P3.get_NumFromArray(i);
+		//	n3 -= n2 + n1;
+		//	P3.set_NumInArray(i, n3);
+		//}
+
+		//for (auto i = len; i < len; ++i)
+		//{
+		//	n1 = P2.get_NumFromArray(i);
+		//	Number[i] = n1;
+		//}
+
+		//for (auto i = len; i < 2 * len; ++i)
+		//{
+		//	n1 = P1.get_NumFromArray(i - len);
+		//	Number[i] = n1;
+		//}
+
+		//for (auto i = k; i < len + k; ++i)
+		//{
+		//	n1 = Number[i];
+		//	n3 = P3.get_NumFromArray(i - k);
+		//	n1 += n3;
+		//	Number[i] = n1;
+		//}
+	}
+}
+
+void BaseLogic::Naive_Mul(const BaseLogic &X, const BaseLogic &Y)
+{
+	int k = X.getDotPos(), l = Y.getDotPos();
+	num_length = X.length() + Y.length();
+	for (int i = 0; i < num_length; ++i)
+		Number[i] = 0;
+	Add_Zeros_At_Begin(1);
+	for (int i = 0; i < X.length(); ++i)
+	{
+		for (int j = 0; j < Y.length(); ++j)
+			Number[i + j] += X.get_NumFromArray(i) * Y.get_NumFromArray(j);
+	}
+	Normalize();
+
+	if (k == -1 && l != -1)
+	{
+		dot_pos = k + l +1;
+	}
+	else
+	{
+		if (k != -1 && l == -1)
+		{
+			dot_pos = k + l +1;
+		}
+		else
+			dot_pos = k + l - 1;
+	}
+	Remove_Zeros_At_End(1);
 }
 
 void BaseLogic::Div(BaseLogic A, BaseLogic B)
@@ -400,6 +490,37 @@ void BaseLogic::Div(BaseLogic A, BaseLogic B)
 			//cur
 		}
 	}
+}
+
+void BaseLogic::Exponent(const BaseLogic &X, const BaseLogic &Y, int &exp, bool &expon)
+{
+	BaseLogic work, rez, rez2;
+	bool choose_num;
+	cout << "Number1 (1) or number2 (0) use? (1/0)" << endl;
+	cin >> choose_num;
+	if (choose_num)
+		work = X;
+	else
+	{
+		expon = true;
+		work = Y;
+	}
+
+	cout << "Exponent = ";
+	cin >> exp;
+
+	rez = work;
+	for (int i = 1; i < exp; i++)
+	{
+		rez2.Naive_Mul(rez, work);
+		rez2.Normalize();
+		rez = rez2;
+	}
+
+	num_length = rez2.length();
+	for (int i = 0; i < rez2.length(); i++)
+		Number[i] = rez2.Number[i];
+	dot_pos = rez2.getDotPos();
 }
 
 void BaseLogic::Minus(BaseLogic X1, BaseLogic X2)
