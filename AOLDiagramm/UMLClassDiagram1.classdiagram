@@ -8,6 +8,14 @@
         <classMoniker Id="e332317d-a461-431f-b369-c4c15a4ef828" LastKnownName="BaseLogic" />
       </annotatedElements>
     </comment>
+    <comment Id="21df9b7a-b3fb-497d-ada0-a133ded81418">
+      <elementDefinition Id="9a9c73bf-c55c-46c1-9793-1a7bff2770c4" />
+      <body>Maximum length of number is 256 symbols.
+Modified before compiling</body>
+      <annotatedElements>
+        <classMoniker Id="e332317d-a461-431f-b369-c4c15a4ef828" LastKnownName="BaseLogic" />
+      </annotatedElements>
+    </comment>
   </ownedCommentsInternal>
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
@@ -364,7 +372,7 @@
                 <parameter Id="8e759e1c-84f4-466d-bad9-7b17ce99943d" direction="Return" isUnique="false">
                   <elementDefinition Id="c333151e-6e7a-4e16-985d-e6b036ba27a7" />
                   <type_NamedElement>
-                    <referencedTypeMoniker Id="fd17de04-6b09-4734-ac9b-d2c24968d0a3" LastKnownName="int" />
+                    <referencedTypeMoniker Id="4d5ba7e4-7d88-4074-b504-f7f8e362f605" LastKnownName="Integer" />
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
@@ -413,6 +421,255 @@
                   <elementDefinition Id="9d71ff4a-1321-4ef2-a522-9fd33611aae9" />
                   <type_NamedElement>
                     <referencedTypeMoniker Id="cb1becb1-9c4b-4a9b-b512-16cae08f88a2" LastKnownName="BaseLogic" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="474b44d7-070f-462d-ad9e-afbe8442de8c" name="isNull" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <description>Return true if number is empty or 0</description>
+            <elementDefinition Id="3c2bedd3-2dbd-42d8-a99b-b40b9b5d3121" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="ae933869-4066-4fd8-beb0-d711102832bc" direction="Return">
+                  <elementDefinition Id="66dc6f04-7ff4-495b-8474-674ddb32b6b3" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="20218e66-2818-4355-b739-8e9eb1b82259" LastKnownName="Boolean" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="955c4c9a-6d76-46e3-848d-1a390d327f66" name="FillRange" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="a00df1ca-3171-4cac-a2ca-c22e96307896" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="c259d19d-9095-4d2d-b5ef-d0c8fdc3a915" name="X" direction="In">
+                  <elementDefinition Id="23378c8a-4110-4b12-bea5-3c72bad74247" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="cbbaf36c-aff8-4efe-be19-f8d8d7b53f0b" LastKnownName="BaseLogic" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="dd887dfb-5199-4d44-831c-4c137fa0699b" name="begin" direction="In">
+                  <description>First index of array</description>
+                  <elementDefinition Id="dd7e3e07-cc8c-4c0c-9145-23f9ddd308c3" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="0402c041-634b-4f27-99e9-b838d2f5bb54" LastKnownName="Integer" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="a44bdb51-e8e2-4e7a-af5b-ae39487da115" name="end" direction="In">
+                  <description>Last index of array</description>
+                  <elementDefinition Id="015546cb-7531-4809-a3a9-3d9619842986" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="cf7d5219-3361-46a4-91e8-213a8b4c7d3f" LastKnownName="Interger" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="19e57c54-ac52-42e3-b2be-38eb12085210" name="Remove_Zeros_At_Begin" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <description>Removes zeros from begin of number</description>
+            <elementDefinition Id="b856bd41-8867-451f-95e7-3c7a73094bbf" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="fd13b1de-3d05-4b03-a159-d1a4c6a635fd" name="count" direction="In">
+                  <elementDefinition Id="d2cb1dce-c115-48fd-903c-850a68818b87" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="0402c041-634b-4f27-99e9-b838d2f5bb54" LastKnownName="Integer" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="986395ef-26af-4088-9884-a003e2dff2af" name="Remove_Zeros_At_End" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <description>Remove zeros at end</description>
+            <elementDefinition Id="a6a3d8c2-261f-48c4-9f90-d609435063ae" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="c804ab65-2298-4088-9d19-407b95298bf8" name="count" direction="In">
+                  <description>Count of zeros to delete</description>
+                  <elementDefinition Id="909d5aa3-6961-42d7-90da-8dc549d3f4dd" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="0402c041-634b-4f27-99e9-b838d2f5bb54" LastKnownName="Integer" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="235cb219-b1bb-438f-ab70-97bab4cc5be3" name="Normalize" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <description>Normalize 2 numbers (remove zeros from begin and end if necessary)</description>
+            <elementDefinition Id="bdb0556a-5a63-49c0-9fdc-163d7482ed2d" />
+          </operation>
+          <operation Id="89eb4718-a247-4487-82d8-a1c15c33343a" name="Naive_Mul" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <description>Modifies result value via multiplication of 2 objects in arguments</description>
+            <elementDefinition Id="f44ca255-5a7b-44a3-8105-0e301d8b3b98" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="9eed612c-975c-4948-8f9b-ca47b228d52f" name="X" direction="In">
+                  <description>1 object of class</description>
+                  <elementDefinition Id="95654001-2ddb-4e56-836d-b3da0ff97504" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="cbbaf36c-aff8-4efe-be19-f8d8d7b53f0b" LastKnownName="BaseLogic" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="a5e6fa4e-72d2-4efa-9dc1-2dc83ff032b3" name="Y" direction="In">
+                  <description>Second object of class</description>
+                  <elementDefinition Id="f1f3e477-1bda-488b-9544-84f01b611cb0" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="cbbaf36c-aff8-4efe-be19-f8d8d7b53f0b" LastKnownName="BaseLogic" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="a916d1c8-94ba-4f55-a7d4-d76b0fe21f97" name="Naive_IntMul" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <description>Result object get value from multiplication long number with integer value</description>
+            <elementDefinition Id="cde86975-d9da-49b8-8aef-a2c045496e35" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="e2ff9af6-4889-4a67-b819-6092bebb5b27" name="X" direction="In">
+                  <description>First object of class</description>
+                  <elementDefinition Id="c3a22d67-1161-475c-8980-c3d490d565bd" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="cbbaf36c-aff8-4efe-be19-f8d8d7b53f0b" LastKnownName="BaseLogic" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="4b77b812-cdc6-4484-ad6b-927faf13c877" name="n" direction="In">
+                  <description>Second argument to multiplicate</description>
+                  <elementDefinition Id="b3f5f691-99a5-47f1-921b-dccac3d924f9" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="0402c041-634b-4f27-99e9-b838d2f5bb54" LastKnownName="Integer" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="a25f99e8-f9c7-4661-b0a4-e6d1c4f0b473" name="Div" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <description>Provides result of dividing to long numbers</description>
+            <elementDefinition Id="a47ed05c-c664-4738-9701-345eebea63ad" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="ad0aff06-3487-4af4-9a2f-180a48d10bce" name="X" direction="In">
+                  <description>Long number 1</description>
+                  <elementDefinition Id="db86b31f-a416-42c8-99f9-51582cbc56ee" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="cbbaf36c-aff8-4efe-be19-f8d8d7b53f0b" LastKnownName="BaseLogic" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="cd5d075b-e31c-4c86-bd02-bd3a9c5a69c0" name="Y" direction="In">
+                  <description>Long number 2</description>
+                  <elementDefinition Id="aba36e87-ecc6-42f2-8a0c-4faed2f000bf" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="cbbaf36c-aff8-4efe-be19-f8d8d7b53f0b" LastKnownName="BaseLogic" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="0d165a4e-9a28-4ae8-99b8-73bdce51f1e7" name="Exponent" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="bd5825fa-5a3f-436d-bb63-1523984790ad" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="e0f21fe7-8481-459a-948d-37f4d70ed55e" name="X" direction="In">
+                  <description>First object of class</description>
+                  <elementDefinition Id="c25d6bc1-aefd-48fd-9853-128655e4584e" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="cbbaf36c-aff8-4efe-be19-f8d8d7b53f0b" LastKnownName="BaseLogic" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="e794bc06-42f1-4285-9472-70b97ca097bd" name="Y" direction="In">
+                  <description>Second object of class</description>
+                  <elementDefinition Id="9f5a240c-9dfe-4b10-a36d-605017be4c0a" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="cbbaf36c-aff8-4efe-be19-f8d8d7b53f0b" LastKnownName="BaseLogic" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="59219ff0-93d7-4d3f-89e3-03335682fab8" name="exp" direction="In">
+                  <description>Multiplicator</description>
+                  <elementDefinition Id="ab8c65a8-4046-42a0-bba5-c5d09af63a90" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="0402c041-634b-4f27-99e9-b838d2f5bb54" LastKnownName="Integer" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="b298fa21-048f-4629-9cf0-d769931a70b0" name="expon" direction="In">
+                  <elementDefinition Id="7cbeae42-72c2-47c7-aa09-f75a7791da15" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="abe02102-9bd4-47c0-8864-dd08cdb20999" LastKnownName="Boolean" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="33d9aeb7-cb48-4860-a5fe-95cb14c1ba9a" name="isSymbolNumber" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <description>Return true if element of char array is number, false otherwise...</description>
+            <elementDefinition Id="3191c93b-4333-4a43-a172-5fd6b115d687" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="25638398-2010-4b0c-b629-6045c797b1d2" name="c" direction="In">
+                  <elementDefinition Id="5724005d-85b9-43ae-b2c0-d80877fa32e8" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="9014a4a0-b58e-460a-85ed-bec9fb423550" LastKnownName="char" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="50b82fb9-4dad-4336-ba04-fd4f0c177046" direction="Return">
+                  <elementDefinition Id="dc1ea810-ba8d-472a-a593-29d1486cbc89" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="cb99395f-a337-4120-99a9-e4822dc745b8" LastKnownName="Boolean" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="ccf6e12f-2892-437d-b506-e426d9656433" name="isSymbolDot" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <description>Return true if char is dot, false otherwise...</description>
+            <elementDefinition Id="953c7fc9-c2ad-47a9-8a1d-5a49ab91973e" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="c50900c1-76b1-458e-acb8-262d12db2395" name="c" direction="In">
+                  <elementDefinition Id="24021189-ef17-4f7c-b715-4943504e1f37" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="183d8e0c-b683-46d8-a1b8-c4d5c3b37b70" LastKnownName="char" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="e3832751-3fd6-43a0-b2ed-f68aef61b02a" direction="Return">
+                  <elementDefinition Id="1b058ee2-c0c2-432b-bdc8-20ddca1c78db" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a29ecb07-f9ca-46f9-8a04-84bfd056d987" LastKnownName="Boolean" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="853c4512-c2bd-4e2b-93b8-ffcef134e2d3" name="operator=" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <description>Provides ability to copy data from long number to another</description>
+            <elementDefinition Id="4109864d-f816-491b-b8a7-5eb05059fed5" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="f450fa27-4d32-4939-bac3-cb62228529c1" name="X" direction="In">
+                  <description>Long number</description>
+                  <elementDefinition Id="adf21b7c-cefd-4082-bd5d-d21e871c1e42" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="cbbaf36c-aff8-4efe-be19-f8d8d7b53f0b" LastKnownName="BaseLogic" />
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
@@ -482,13 +739,43 @@
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <referencedType Id="fd17de04-6b09-4734-ac9b-d2c24968d0a3" name="int" isAbstract="false" isLeaf="false" cachedFullName="int">
-        <elementDefinition Id="21cb1c65-4d4f-446a-b63b-e071af618d23" />
+      <referencedType Id="dddbdcab-ab00-4f72-b235-b4f816d5b698" name="char*" isAbstract="false" isLeaf="false" cachedFullName="char*">
+        <elementDefinition Id="28b7c623-b0a7-4ae4-962c-344e03c24526" />
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <referencedType Id="dddbdcab-ab00-4f72-b235-b4f816d5b698" name="char*" isAbstract="false" isLeaf="false" cachedFullName="char*">
-        <elementDefinition Id="28b7c623-b0a7-4ae4-962c-344e03c24526" />
+      <referencedType Id="4d5ba7e4-7d88-4074-b504-f7f8e362f605" name="Integer" isAbstract="false" isLeaf="false" cachedFullName="Integer">
+        <elementDefinition Id="220a3521-e091-4221-bae9-3ef9018e845c" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="20218e66-2818-4355-b739-8e9eb1b82259" name="Boolean" isAbstract="false" isLeaf="false" cachedFullName="Boolean">
+        <elementDefinition Id="8943dc84-709e-4f62-b15a-a3273aa6f165" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="cf7d5219-3361-46a4-91e8-213a8b4c7d3f" name="Interger" isAbstract="false" isLeaf="false" cachedFullName="Interger">
+        <elementDefinition Id="50ee7490-0887-46ee-a5fe-01e91c30f9f5" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="9014a4a0-b58e-460a-85ed-bec9fb423550" name="char" isAbstract="false" isLeaf="false" cachedFullName="char">
+        <elementDefinition Id="d35b9389-6c20-4175-a3ea-92866d6bd2bb" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="cb99395f-a337-4120-99a9-e4822dc745b8" name="Boolean" isAbstract="false" isLeaf="false" cachedFullName="Boolean">
+        <elementDefinition Id="8943dc84-709e-4f62-b15a-a3273aa6f165" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="183d8e0c-b683-46d8-a1b8-c4d5c3b37b70" name="char" isAbstract="false" isLeaf="false" cachedFullName="char">
+        <elementDefinition Id="d35b9389-6c20-4175-a3ea-92866d6bd2bb" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="a29ecb07-f9ca-46f9-8a04-84bfd056d987" name="Boolean" isAbstract="false" isLeaf="false" cachedFullName="Boolean">
+        <elementDefinition Id="8943dc84-709e-4f62-b15a-a3273aa6f165" />
       </referencedType>
     </packageHasNamedElement>
   </packagedElements>
