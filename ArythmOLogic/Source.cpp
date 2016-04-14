@@ -121,14 +121,19 @@ void Menu()
 		cout << "--> 8 <--  Operation 1/x. " << endl;
 		cout << "--> 9 <--  Writing data to a file. " << endl;
 		cout << "--> i <--  Display the result on the screen. " << endl;
-		cout << "--> e <--  Exit. " << endl;
 		cout << "\n>>> ";
 		cin >> wMode;
 		switch (wMode[0])
 		{
 			case '1':
+				number1.setDotPos(-1);
+				number1.setNegative(false);
+				number1.set_length(0);
+				number2.setDotPos(-1);
+				number2.setNegative(false);
+				number2.set_length(0);
 				rez.setDotPos(-1);
-				rez.setNegative(0);
+				rez.setNegative(false);
 				rez.set_length(0); // обнуляем результат
 				cout << "\nEnter number #1: ";
 				if (!Enter(number1)) 
@@ -190,7 +195,6 @@ void Menu()
 					rez.setNegative(0);
 					rez.set_length(0);
 					rez.Naive_Mul(number1, number2);
-					rez.Normalize();
 					last_action = '*';
 					expon = false;
 				}
@@ -201,8 +205,24 @@ void Menu()
 				}
 				break;
 			case '6': 
+				if (number1.isEmpty() == false && number2.isEmpty() == false)
+				{
+					rez.setDotPos(-1);
+					rez.setNegative(false);
+					rez.set_length(0);
+					//rez.Naive_IntMul(number1, 3);
+					rez.Div(number1, number2);
+					last_action = '/';
+					expon = false;
+				}
+				else
+				{
+					cout << "Incorrect numbers. " << endl;
+					system("PAUSE");
+				}
 				break;
 			case '7': 
+				expon = false;
 				cout << "Number #1: "; number1.PrintNumbers();
 				cout << "Number #2: "; number2.PrintNumbers();
 				rez.Exponent(number1, number2, exp, expon);
@@ -253,8 +273,6 @@ void Menu()
 					cout << "Incorrect numbers or result. " << endl;
 				system("PAUSE");
 					break;
-			case 'e': 
-				return;
 			default: 
 				cout << "Incorrect work mode! "; 
 				system("PAUSE");

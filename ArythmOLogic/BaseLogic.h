@@ -32,6 +32,7 @@ public:
 
 	// Check if array is empty
 	bool isEmpty() const { return !(length()); }
+	bool isNull();
 
 	//operator =
 	void operator= (const BaseLogic& X)
@@ -71,9 +72,10 @@ public:
 	void Normalize(); // Work perfect
 	void Karatsuba_Mul(const BaseLogic&, const BaseLogic&); // not work
 	// Naive mul
-	void Naive_Mul(const BaseLogic&X, const BaseLogic&Y); // naive multiple, Working!!!
+	void Naive_Mul(BaseLogic X, BaseLogic Y); // naive multiple, Working!!!
+	void Naive_IntMul(const BaseLogic&X, int n);
 	// Div operation
-	void Div(BaseLogic, BaseLogic); // not work
+	void Div(const BaseLogic&A, const BaseLogic&B); // not work
 	// Exponent operation
 	void Exponent(const BaseLogic &X, const BaseLogic &Y, int &exp, bool &expon);
 

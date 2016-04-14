@@ -2,6 +2,9 @@
 BaseLogic::BaseLogic()
 {
 }
+BaseLogic::~BaseLogic()
+{
+}
 
 void BaseLogic::FillRange(const BaseLogic& X, int begin = 0, int end = 1)
 {
@@ -12,10 +15,6 @@ void BaseLogic::FillRange(const BaseLogic& X, int begin = 0, int end = 1)
 		num_length++;
 		k++;
 	}
-}
-
-BaseLogic::~BaseLogic()
-{
 }
 
 /* Copy of object */
@@ -155,6 +154,15 @@ void BaseLogic::Add_Zeros_At_End(int count)
 	}
 }
 
+bool BaseLogic::isNull()
+{
+	for (int i = 0; i < length(); i++)
+	{
+		if (Number[i] != 0) return false;
+	}
+	return true;
+}
+
 void BaseLogic::Remove_Zeros_At_Begin(int count)
 {
 	for (int k = 0; k < count; k++)
@@ -164,7 +172,6 @@ void BaseLogic::Remove_Zeros_At_Begin(int count)
 	}
 	num_length -= count;
 }
-
 void BaseLogic::Remove_Zeros_At_End(int count)
 {
 	for (int i = 0; i < count; i++)
@@ -332,7 +339,6 @@ void BaseLogic::Normalize()
 	if (Number[0] == 0) Remove_Zeros_At_Begin(1);
 	if (Number[num_length - 1] == 0) Remove_Zeros_At_End(1);
 }
-
 void BaseLogic::Karatsuba_Mul(const BaseLogic&X, const BaseLogic&Y)
 {
 	auto len = X.length();
@@ -443,10 +449,16 @@ void BaseLogic::Karatsuba_Mul(const BaseLogic&X, const BaseLogic&Y)
 		//}
 	}
 }
-
-void BaseLogic::Naive_Mul(const BaseLogic &X, const BaseLogic &Y)
+void BaseLogic::Naive_Mul(BaseLogic X, BaseLogic Y)
 {
 	int k = X.getDotPos(), l = Y.getDotPos();
+
+	if (X.isNull() || Y.isNull())
+	{
+		Number[0] = 0;
+		return;
+	}
+
 	num_length = X.length() + Y.length();
 	for (int i = 0; i < num_length; ++i)
 		Number[i] = 0;
@@ -471,10 +483,25 @@ void BaseLogic::Naive_Mul(const BaseLogic &X, const BaseLogic &Y)
 		else
 			dot_pos = k + l - 1;
 	}
-	Remove_Zeros_At_End(1);
+	//Remove_Zeros_At_End(1);
+
+	if (X.isNegative() || Y.isNegative()) Number_neg = true;
+	if (X.isNegative() && Y.isNegative()) Number_neg = false;
+}
+void BaseLogic::Naive_IntMul(const BaseLogic & X, int n)
+{
+	num_length = X.length();
+	for (int i = 0; i < num_length; i++)
+		Number[i] = X.get_NumFromArray(i);
+
+	for (int i = 0; i < X.length(); ++i)
+	{
+		Number[i] *= n;
+	}
+	Normalize();
 }
 
-void BaseLogic::Div(BaseLogic A, BaseLogic B)
+void BaseLogic::Div(const BaseLogic&A, const BaseLogic&B)
 {
 	BaseLogic curValue, cur;
 	int x, l, r, m, osn = 10;
@@ -487,11 +514,21 @@ void BaseLogic::Div(BaseLogic A, BaseLogic B)
 		while (l <= r)
 		{
 			m = (l + r) >> 1;
-			//cur
+			cur.Naive_IntMul(B, m);
+			if (cur.CompareInt(curValue) == 2 || cur.CompareInt(curValue) == 0)
+			{
+				x = m;
+				l = m + 1;
+			}
+			else
+				r = m - 1;
 		}
+		Number[i] = x;
+		cur.Naive_IntMul(B, x);
+		curValue.Minus(curValue, cur);
 	}
+	Normalize();
 }
-
 void BaseLogic::Exponent(const BaseLogic &X, const BaseLogic &Y, int &exp, bool &expon)
 {
 	BaseLogic work, rez, rez2;
@@ -510,19 +547,40 @@ void BaseLogic::Exponent(const BaseLogic &X, const BaseLogic &Y, int &exp, bool 
 	cin >> exp;
 
 	rez = work;
-	for (int i = 1; i < exp; i++)
+
+	if (exp == 0)
 	{
-		rez2.Naive_Mul(rez, work);
-		rez2.Normalize();
-		rez = rez2;
+		num_length = 1;
+		Number[0] = 1;
+		dot_pos = -1;
+		return;
 	}
 
-	num_length = rez2.length();
-	for (int i = 0; i < rez2.length(); i++)
-		Number[i] = rez2.Number[i];
-	dot_pos = rez2.getDotPos();
-}
+	if (exp == 1)
+	{
+		num_length = rez.length();
+		for (int i = 0; i < rez.length(); i++)
+			Number[i] = rez.Number[i];
+		dot_pos = rez.getDotPos();
+		if (work.isNegative()) Number_neg = true;
+	}
+	else
+	{
+		for (int i = 1; i < exp; i++)
+		{
+			rez2.Naive_Mul(rez, work);
+			rez = rez2;
+		}
 
+		num_length = rez2.length();
+		for (int i = 0; i < rez2.length(); i++)
+			Number[i] = rez2.Number[i];
+		dot_pos = rez2.getDotPos();
+
+		if (work.isNegative() && (exp % 2 != 0)) Number_neg = true;
+		Remove_Zeros_At_End(exp - 1);
+	}
+}
 void BaseLogic::Minus(BaseLogic X1, BaseLogic X2)
 {
 	int num1, num2, num_res, num_ostatok = 0, temp_mem = 0;
@@ -655,7 +713,6 @@ void BaseLogic::Minus(BaseLogic X1, BaseLogic X2)
 		Number_neg = true;
 	dot_pos = X1.getDotPos();
 }
-
 int BaseLogic::CompareInt(BaseLogic X2)
 {
 	// MAIN THEME:
