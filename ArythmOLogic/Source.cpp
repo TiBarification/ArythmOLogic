@@ -197,6 +197,8 @@ void Menu()
 					rez.Naive_Mul(number1, number2);
 					last_action = '*';
 					expon = false;
+					if (rez.getDotPos() < 0) rez.Normalize();
+						//rez.setDotPos(rez.length()-1);
 				}
 				else
 				{

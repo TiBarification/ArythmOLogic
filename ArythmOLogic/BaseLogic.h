@@ -32,7 +32,7 @@ public:
 
 	// Check if array is empty
 	bool isEmpty() const { return !(length()); }
-	bool isNull(); // Return true if Number is null or 0
+	bool isNull();
 
 	//operator =
 	void operator= (const BaseLogic& X)

@@ -455,6 +455,9 @@ void BaseLogic::Naive_Mul(BaseLogic X, BaseLogic Y)
 
 	if (X.isNull() || Y.isNull())
 	{
+		Number_neg = false;
+		dot_pos = -1;
+		num_length = 1;
 		Number[0] = 0;
 		return;
 	}
@@ -543,6 +546,10 @@ void BaseLogic::Exponent(const BaseLogic &X, const BaseLogic &Y, int &exp, bool 
 		work = Y;
 	}
 
+	int l = work.getDotPos();
+	cout <<  "L= " << l;
+	system("PAUSE");
+
 	cout << "Exponent = ";
 	cin >> exp;
 
@@ -579,6 +586,8 @@ void BaseLogic::Exponent(const BaseLogic &X, const BaseLogic &Y, int &exp, bool 
 
 		if (work.isNegative() && (exp % 2 != 0)) Number_neg = true;
 		Remove_Zeros_At_End(exp - 1);
+
+		if (l < 0) dot_pos = -1;
 	}
 }
 void BaseLogic::Minus(BaseLogic X1, BaseLogic X2)
