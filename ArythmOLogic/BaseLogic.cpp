@@ -446,12 +446,16 @@ void BaseLogic::Karatsuba_Mul(const BaseLogic&X, const BaseLogic&Y)
 
 void BaseLogic::Naive_Mul(const BaseLogic &X, const BaseLogic &Y)
 {
+<<<<<<< HEAD
 	int k = X.getDotPos(), l = Y.getDotPos();
+=======
+>>>>>>> a133b7c20c59835ed5e12872e3071f83c2e3d97f
 	num_length = X.length() + Y.length();
 	for (int i = 0; i < num_length; ++i)
 		Number[i] = 0;
 	Add_Zeros_At_Begin(1);
 	for (int i = 0; i < X.length(); ++i)
+<<<<<<< HEAD
 	{
 		for (int j = 0; j < Y.length(); ++j)
 			Number[i + j] += X.get_NumFromArray(i) * Y.get_NumFromArray(j);
@@ -471,6 +475,14 @@ void BaseLogic::Naive_Mul(const BaseLogic &X, const BaseLogic &Y)
 		else
 			dot_pos = k + l - 1;
 	}
+=======
+	{
+
+		for (int j = 0; j < Y.length(); ++j)
+			Number[i + j] += X.get_NumFromArray(i) * Y.get_NumFromArray(j);
+	}
+	
+>>>>>>> a133b7c20c59835ed5e12872e3071f83c2e3d97f
 	Remove_Zeros_At_End(1);
 }
 
