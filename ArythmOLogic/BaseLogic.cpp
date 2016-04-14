@@ -471,10 +471,26 @@ void BaseLogic::Naive_Mul(const BaseLogic &X, const BaseLogic &Y)
 		else
 			dot_pos = k + l - 1;
 	}
-	Remove_Zeros_At_End(1);
+	//Remove_Zeros_At_End(1);
+
+	if (X.isNegative() || Y.isNegative()) Number_neg = true;
+	if (X.isNegative() && Y.isNegative()) Number_neg = false;
 }
 
-void BaseLogic::Div(BaseLogic A, BaseLogic B)
+void BaseLogic::Naive_IntMul(const BaseLogic & X, int n)
+{
+	num_length = X.length();
+	for (int i = 0; i < num_length; i++)
+		Number[i] = X.get_NumFromArray(i);
+
+	for (int i = 0; i < X.length(); ++i)
+	{
+		Number[i] *= n;
+	}
+	Normalize();
+}
+
+void BaseLogic::Div(const BaseLogic&A, const BaseLogic&B)
 {
 	BaseLogic curValue, cur;
 	int x, l, r, m, osn = 10;
@@ -487,9 +503,20 @@ void BaseLogic::Div(BaseLogic A, BaseLogic B)
 		while (l <= r)
 		{
 			m = (l + r) >> 1;
-			//cur
+			cur.Naive_IntMul(B, m);
+			if (cur.CompareInt(curValue) == 2 || cur.CompareInt(curValue) == 0)
+			{
+				x = m;
+				l = m + 1;
+			}
+			else
+				r = m - 1;
 		}
+		Number[i] = x;
+		cur.Naive_IntMul(B, x);
+		curValue.Minus(curValue, cur);
 	}
+	Normalize();
 }
 
 void BaseLogic::Exponent(const BaseLogic &X, const BaseLogic &Y, int &exp, bool &expon)
@@ -521,6 +548,8 @@ void BaseLogic::Exponent(const BaseLogic &X, const BaseLogic &Y, int &exp, bool 
 	for (int i = 0; i < rez2.length(); i++)
 		Number[i] = rez2.Number[i];
 	dot_pos = rez2.getDotPos();
+
+	if (work.isNegative() && (exp % 2 != 0)) Number_neg = true;
 }
 
 void BaseLogic::Minus(BaseLogic X1, BaseLogic X2)
