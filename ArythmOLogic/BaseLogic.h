@@ -70,19 +70,12 @@ public:
 	// Karatsuba mul
 	void Normalize(); // Work perfect
 	void Karatsuba_Mul(const BaseLogic&, const BaseLogic&); // not work
-<<<<<<< HEAD
 	// Naive mul
 	void Naive_Mul(const BaseLogic&X, const BaseLogic&Y); // naive multiple, Working!!!
 	// Div operation
 	void Div(BaseLogic, BaseLogic); // not work
 	// Exponent operation
 	void Exponent(const BaseLogic &X, const BaseLogic &Y, int &exp, bool &expon);
-=======
-	// naive mul
-	void Naive_Mul(const BaseLogic&X, const BaseLogic&Y); // naive multiple, Working!!!
-	// Div operation
-	void Div(BaseLogic, BaseLogic); // not work
->>>>>>> a133b7c20c59835ed5e12872e3071f83c2e3d97f
 
 private:
 	bool isSymbolNumber(char c);
